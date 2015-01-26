@@ -1,0 +1,23 @@
+Package: CppADutils
+Title: utils for using CppAD in packages
+Version: 0.0.0.9000
+Authors@R: "Michael Braun <braunm@smu.edu> [aut, cre]"
+Description: What the package does (one paragraph)
+Depends:
+    R (>= 3.1.2),
+    Rcpp (>= 0.11.3),
+    RcppEigen (>= 0.3.2.3),
+    methods,
+    Matrix (>= 1.1.4)
+License: file LICENSE
+LazyData: true
+LinkingTo: Rcpp, RcppEigen
+RcppModules: adtest
+Roxygen: list(wrap=TRUE)
+Suggests:
+    knitr,
+    plyr,
+    testthat,
+    numDeriv
+VignetteBuilder: knitr
+SystemRequirements: C++11
