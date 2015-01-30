@@ -103,7 +103,7 @@ class mb_atomic : public CppAD::atomic_base<double> {
   {		
     size_t n = tx.size() / (p+1);
 	
-    const Map<const MatrixXd> x = MatrixXd::Map(&(tx[0]),p+1,n);
+    const Map<const MatrixXd> x = MatrixXd::Map(&(tx[0]), p+1, n);
     const Map<const VectorXd> py = VectorXd::Map(&(py_[0]),p+1);
     Map<MatrixXd> px = MatrixXd::Map(&(px_[0]),p+1,n);
 	

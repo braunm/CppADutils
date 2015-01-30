@@ -46,6 +46,9 @@ class MB_Base {
   NumericMatrix get_hessian(const NumericVector&);
   Rcpp::S4 get_hessian_sparse(const NumericVector&);
 
+  List get_hessian_test(const NumericVector&);
+
+  
   List get_tape_stats();
   void record_tape(const NumericVector&);
 
@@ -233,6 +236,39 @@ NumericMatrix MB_Base<TM>::get_hessian(const NumericVector& P_) {
   MatrixXd hess = MatrixXd::Map(tape.Hessian(P, size_t(0)).data(), nvars_, nvars_);
   return(Rcpp::wrap(hess));
 }
+
+
+template<typename TM>
+List MB_Base<TM>::get_hessian_test(const NumericVector& P_) {
+
+  // for DENSE Hessian
+  if (!tape_ready)
+    throw MyException("tape not ready",__FILE__,__LINE__);
+
+  VectorXd P = VectorXd::Map(P_.begin(), nvars_);
+ 
+
+  VectorXd w(1);
+  w(0) = 1;
+  
+  VectorXd hessvec = tape.Hessian(P, w);
+ 
+
+  //  MatrixXd hess = MatrixXd::Map(tape.Hessian(P, size_t(0)).data(), nvars_, nvars_);
+  MatrixXd hess = MatrixXd::Map(hessvec.data(), nvars_, nvars_);
+
+
+  List res = List::create(Rcpp::Named("pars") = Rcpp::wrap(P),
+			  Rcpp::Named("hessvec") = Rcpp::wrap(hessvec),
+			  Rcpp::Named("hess") = Rcpp::wrap(hess),
+			  Rcpp::Named("nvars") = nvars_);
+
+  return(res);
+  
+}
+
+
+
 
 template<typename TM>
 Rcpp::S4 MB_Base<TM>::get_hessian_sparse(const NumericVector& P_)

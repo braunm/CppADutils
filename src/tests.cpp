@@ -162,6 +162,18 @@ Rcpp::List cppad_incbeta(const NumericVector& X) {
   return(res);
 }
 
+
+
+//' @inheritParams CppADutils-tests
+//' @rdname CppADutils-tests
+//[[Rcpp::export]]
+Rcpp::List cppad_incbeta2(const NumericVector& X) {
+  run_test<incbeta_test2> test;
+  test.record_tape(X);
+  Rcpp::List res = test.cppad_results();
+  return(res);
+}
+
 //' @inheritParams CppADutils-tests
 //' @rdname CppADutils-tests
 //[[Rcpp::export]]
@@ -188,6 +200,17 @@ Rcpp::List cppad_dt_log(const NumericVector& X) {
 //[[Rcpp::export]]
 Rcpp::List cppad_dhalft_log(const NumericVector& X) {
   run_test<dhalft_log_test> test;
+  test.record_tape(X);
+  Rcpp::List res = test.cppad_results();
+  return(res);
+}
+
+
+//' @inheritParams CppADutils-tests
+//' @rdname CppADutils-tests
+//[[Rcpp::export]]
+Rcpp::List cppad_dhalft_log2(const NumericVector& X) {
+  run_test<dhalft_log_test2> test;
   test.record_tape(X);
   Rcpp::List res = test.cppad_results();
   return(res);

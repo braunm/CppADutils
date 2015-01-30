@@ -157,6 +157,12 @@ cppad_incbeta <- function(X) {
 
 #' @inheritParams CppADutils-tests
 #' @rdname CppADutils-tests
+cppad_incbeta2 <- function(X) {
+    .Call('CppADutils_cppad_incbeta2', PACKAGE = 'CppADutils', X)
+}
+
+#' @inheritParams CppADutils-tests
+#' @rdname CppADutils-tests
 cppad_lgammaLogExp <- function(X) {
     .Call('CppADutils_cppad_lgammaLogExp', PACKAGE = 'CppADutils', X)
 }
@@ -171,6 +177,12 @@ cppad_dt_log <- function(X) {
 #' @rdname CppADutils-tests
 cppad_dhalft_log <- function(X) {
     .Call('CppADutils_cppad_dhalft_log', PACKAGE = 'CppADutils', X)
+}
+
+#' @inheritParams CppADutils-tests
+#' @rdname CppADutils-tests
+cppad_dhalft_log2 <- function(X) {
+    .Call('CppADutils_cppad_dhalft_log2', PACKAGE = 'CppADutils', X)
 }
 
 #' @inheritParams CppADutils-tests

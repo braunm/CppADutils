@@ -369,6 +369,21 @@ BEGIN_RCPP
     return __sexp_result;
 END_RCPP
 }
+// cppad_incbeta2
+Rcpp::List cppad_incbeta2(const NumericVector& X);
+RcppExport SEXP CppADutils_cppad_incbeta2(SEXP XSEXP) {
+BEGIN_RCPP
+    SEXP __sexp_result;
+    {
+        Rcpp::RNGScope __rngScope;
+        Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP );
+        Rcpp::List __result = cppad_incbeta2(X);
+        PROTECT(__sexp_result = Rcpp::wrap(__result));
+    }
+    UNPROTECT(1);
+    return __sexp_result;
+END_RCPP
+}
 // cppad_lgammaLogExp
 Rcpp::List cppad_lgammaLogExp(const NumericVector& X);
 RcppExport SEXP CppADutils_cppad_lgammaLogExp(SEXP XSEXP) {
@@ -408,6 +423,21 @@ BEGIN_RCPP
         Rcpp::RNGScope __rngScope;
         Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP );
         Rcpp::List __result = cppad_dhalft_log(X);
+        PROTECT(__sexp_result = Rcpp::wrap(__result));
+    }
+    UNPROTECT(1);
+    return __sexp_result;
+END_RCPP
+}
+// cppad_dhalft_log2
+Rcpp::List cppad_dhalft_log2(const NumericVector& X);
+RcppExport SEXP CppADutils_cppad_dhalft_log2(SEXP XSEXP) {
+BEGIN_RCPP
+    SEXP __sexp_result;
+    {
+        Rcpp::RNGScope __rngScope;
+        Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP );
+        Rcpp::List __result = cppad_dhalft_log2(X);
         PROTECT(__sexp_result = Rcpp::wrap(__result));
     }
     UNPROTECT(1);
