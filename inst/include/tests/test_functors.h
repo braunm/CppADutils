@@ -253,12 +253,10 @@ struct dhalft_log_test2 {
   AScalar eval(const MatrixBase<TA>& Y) {
     size_t n = Y.size()/3;
     AScalar res1 = 0.0;
-    AScalar res2 = 0.0;
     for (size_t i=0; i<n; i++) {
       res1 += dhalft_log(Y(3*i), Y(3*i+1), Y(3*i+2));
-      res2 += dnorm_log(Y(3*i), Y(3*i+1), Y(3*i+2));
     }
-    return res1*res2;
+    return res1*res1;
   }
 };
 
@@ -271,5 +269,32 @@ struct pnorm_log_test {
       res += pnorm_log(Y(3*i), Y(3*i+1), Y(3*i+2));
     }
     return res;
+  }
+};
+
+
+struct atan2_test_a {  
+  template<typename TA>  
+  AScalar eval(const MatrixBase<TA>& Y) {
+    size_t n = Y.size()/2;
+    AScalar res = 0.0;
+    for (size_t i=0; i<n; i++) {
+      res += CppAD::atan2(Y(2*i), Y(2*i+1));
+    }
+    return (res*res);
+  }
+};
+
+struct atan2_test_b {  
+  template<typename TA>  
+  AScalar eval(const MatrixBase<TA>& Y) {
+    size_t n = Y.size()/2;
+    AScalar res1 = 0.0;
+    AScalar res2 = 0.0;
+    for (size_t i=0; i<n; i++) {
+      res1 += CppAD::atan2(Y(2*i), Y(2*i+1));
+      res2 += CppAD::pow(Y(2*i), Y(2*i+1));
+    }
+    return res1*res2;
   }
 };

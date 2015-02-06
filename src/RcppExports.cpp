@@ -459,6 +459,36 @@ BEGIN_RCPP
     return __sexp_result;
 END_RCPP
 }
+// cppad_atan2a
+Rcpp::List cppad_atan2a(const NumericVector& X);
+RcppExport SEXP CppADutils_cppad_atan2a(SEXP XSEXP) {
+BEGIN_RCPP
+    SEXP __sexp_result;
+    {
+        Rcpp::RNGScope __rngScope;
+        Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP );
+        Rcpp::List __result = cppad_atan2a(X);
+        PROTECT(__sexp_result = Rcpp::wrap(__result));
+    }
+    UNPROTECT(1);
+    return __sexp_result;
+END_RCPP
+}
+// cppad_atan2b
+Rcpp::List cppad_atan2b(const NumericVector& X);
+RcppExport SEXP CppADutils_cppad_atan2b(SEXP XSEXP) {
+BEGIN_RCPP
+    SEXP __sexp_result;
+    {
+        Rcpp::RNGScope __rngScope;
+        Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP );
+        Rcpp::List __result = cppad_atan2b(X);
+        PROTECT(__sexp_result = Rcpp::wrap(__result));
+    }
+    UNPROTECT(1);
+    return __sexp_result;
+END_RCPP
+}
 // cppad_pnorm_log
 Rcpp::List cppad_pnorm_log(const NumericVector& X);
 RcppExport SEXP CppADutils_cppad_pnorm_log(SEXP XSEXP) {

@@ -3,14 +3,18 @@
 \name{CppADutils-tests}
 \alias{CppADutils-tests}
 \alias{CppADutils_tests}
+\alias{cppad_atan2a}
+\alias{cppad_atan2b}
 \alias{cppad_dbeta_log}
 \alias{cppad_dhalft_log}
+\alias{cppad_dhalft_log2}
 \alias{cppad_dlogitbeta_log}
 \alias{cppad_dnormTrunc0_log}
 \alias{cppad_dnorm_log}
 \alias{cppad_dt_log}
 \alias{cppad_expm1}
 \alias{cppad_incbeta}
+\alias{cppad_incbeta2}
 \alias{cppad_incgamma}
 \alias{cppad_invlogit}
 \alias{cppad_lbeta1}
@@ -22,7 +26,6 @@
 \alias{cppad_log1pexp}
 \alias{cppad_log1pmx}
 \alias{cppad_loginvlogit}
-\alias{cppad_pnorm_log}
 \title{tests}
 \usage{
 CppADutils_tests(X)
@@ -57,15 +60,21 @@ cppad_incgamma(X)
 
 cppad_incbeta(X)
 
+cppad_incbeta2(X)
+
 cppad_lgammaLogExp(X)
 
 cppad_dt_log(X)
 
 cppad_dhalft_log(X)
 
+cppad_dhalft_log2(X)
+
 cppad_dnormTrunc0_log(X)
 
-cppad_pnorm_log(X)
+cppad_atan2a(X)
+
+cppad_atan2b(X)
 }
 \arguments{
   \item{X}{numeric vector (not matrix at this time)}

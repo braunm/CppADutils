@@ -229,6 +229,28 @@ Rcpp::List cppad_dnormTrunc0_log(const NumericVector& X) {
 //' @inheritParams CppADutils-tests
 //' @rdname CppADutils-tests
 //[[Rcpp::export]]
+Rcpp::List cppad_atan2a(const NumericVector& X) {
+  run_test<atan2_test_a> test;
+  test.record_tape(X);
+  Rcpp::List res = test.cppad_results();
+  return(res);
+}
+
+
+//' @inheritParams CppADutils-tests
+//' @rdname CppADutils-tests
+//[[Rcpp::export]]
+Rcpp::List cppad_atan2b(const NumericVector& X) {
+  run_test<atan2_test_b> test;
+  test.record_tape(X);
+  Rcpp::List res = test.cppad_results();
+  return(res);
+}
+
+
+//' @inheritParams CppADutils-tests
+//' @rdname CppADutils-tests
+//[[Rcpp::export]]
 Rcpp::List cppad_pnorm_log(const NumericVector& X) {
   run_test<pnorm_log_test> test;
   test.record_tape(X);

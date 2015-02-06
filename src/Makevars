@@ -1,5 +1,4 @@
-PKG_CPPFLAGS=-I/opt/cppad/include  -I../inst/include/ -DNDEBUG
-##PKG_CPPFLAGS=-I/opt/cppad-devel/include  -I../inst/include/
-CXX_STD = CXX11
-##PKG_CXXFLAGS = -O0 -g
+##PKG_CPPFLAGS=-I/opt/cppad/include  -I../inst/include/ -DNDEBUG
+PKG_CPPFLAGS=-I/opt/cppad-devel/include  -I../inst/include/ 
+
 

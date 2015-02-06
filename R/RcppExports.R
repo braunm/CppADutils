@@ -193,6 +193,18 @@ cppad_dnormTrunc0_log <- function(X) {
 
 #' @inheritParams CppADutils-tests
 #' @rdname CppADutils-tests
+cppad_atan2a <- function(X) {
+    .Call('CppADutils_cppad_atan2a', PACKAGE = 'CppADutils', X)
+}
+
+#' @inheritParams CppADutils-tests
+#' @rdname CppADutils-tests
+cppad_atan2b <- function(X) {
+    .Call('CppADutils_cppad_atan2b', PACKAGE = 'CppADutils', X)
+}
+
+#' @inheritParams CppADutils-tests
+#' @rdname CppADutils-tests
 cppad_pnorm_log <- function(X) {
     .Call('CppADutils_cppad_pnorm_log', PACKAGE = 'CppADutils', X)
 }
