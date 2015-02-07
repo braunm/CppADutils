@@ -8,7 +8,7 @@ test_that("incgamma",{
         for (i in 1:n) {
             res <- res + pgamma(x[2*(i-1)+1], x[2*i], 1)
         }
-        return(res)
+        return(res*res)
     }
 
     x <- c(1.8, 2.3, 4.4, 0.3)

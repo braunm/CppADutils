@@ -95,7 +95,7 @@ class incbeta_cl {
     hess(1,1) = der[2];
     hess(1,2) = der[5];
     hess(2,0) = hess(0,2);
-    hess(2,1) = der[5];
+    hess(2,1) = hess(1,2);
     hess(2,2) = der[4];
     
     return (ifault);

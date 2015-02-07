@@ -94,43 +94,40 @@ class mb_atomic : public CppAD::atomic_base<double> {
   // ----------------------------------------------------------------------
   // reverse mode routine called by CppAD
   virtual bool reverse(
-		       size_t                 p ,
+		       size_t                 q ,
 		       const vector<double>&  tx ,
 		       const vector<double>&  ty ,
-		       vector<double>&        px_ ,
-		       const vector<double>&  py_
+		       vector<double>&        px ,
+		       const vector<double>&  py
 		       )
   {		
-    size_t n = tx.size() / (p+1);
+    size_t n = tx.size() / (q+1);
 	
-    const Map<const MatrixXd> x = MatrixXd::Map(&(tx[0]), p+1, n);
-    const Map<const VectorXd> py = VectorXd::Map(&(py_[0]),p+1);
-    Map<MatrixXd> px = MatrixXd::Map(&(px_[0]),p+1,n);
+    const Map<const MatrixXd> x = MatrixXd::Map(&(tx[0]), q+1, n);
 	
     double f;
     VectorXd df(n);     
-    MatrixXd dy(n,p+1);
+    MatrixXd dy(n, q+1);
 
-    bool ok = (p <= 2);
+    bool ok = (q <= 2);
 	
-    if (p == 0) {
+    if (q == 0) {
       func->eval(x.row(0), f, df);
       dy.col(0) = df;
     }
     
-    if (p >= 1) {
+    if (q >= 1) {
       MatrixXd hess(n,n);
       func->eval(x.row(0), f, df, hess);
       dy.col(0) = df;
       dy.col(1) = hess * x.row(1).transpose();
     }
 	
-    px.setZero();   
-	
     for (size_t j=0; j<n; j++){
-      for (size_t k=0; k<=p; k++) {
-	for (size_t i=k; i<=p; i++) {
-	  px(k,j) += py(i) * dy(j,i-k);
+      for (size_t L=0; L <= q; L++) {
+	px[j*(q+1)+L] = 0;
+	for (size_t k=L; k<=q; k++) {
+	  px[j*(q+1)+L] += py[k]*dy(j, k-L);
 	}
       }
     }	
@@ -183,16 +180,24 @@ class mb_atomic : public CppAD::atomic_base<double> {
 			      ) 
   {
     size_t n = vx.size();
+    size_t m = s.size();
+    assert(m==1);
 
-    for (size_t i=0; i<n; i++) { 
+    for (size_t i=0; i<n; i++) {
       t[i] = s[0];
       v[i] = u[0];
       if( s[0] ) {
-	for (size_t j = 0; j < n; j++) {
-	  my_union(v[i], v[i], r[j] );
-	}
+    	for (size_t j = 0; j < n; j++) {
+    	  my_union(v[i], v[i], r[j] );
+    	}
       }
-    }		
+    }
+
+
+  
+
+    
+    
     return true;
 
   }     

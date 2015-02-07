@@ -48,6 +48,7 @@ class dt_log_cl {
     df(1) = digamma((v+1)/2) - digamma(v/2);
     df(1) -= log1p(zz/ssv) + 1/v - zz*(v+1) / (v*(ssv+zz));
     df(1) *= 0.5;
+    
     df(2) = (zz*v - ssv) / (s*(ssv + zz));
   }
   
@@ -72,9 +73,15 @@ class dt_log_cl {
 
     eval(x, f);
     df(0) = z*(v+1) / (zz + ssv);
-    df(1) = df(0)/v - log1p(zz/(ssv)) - 1/v;
-    df(1) += digamma((v+1)/2) - digamma(v/2);
+
+    /* df(1) = df(0)/v - log1p(zz/(ssv)) - 1/v; */
+    /* df(1) += digamma((v+1)/2) - digamma(v/2); */
+    /* df(1) *= 0.5; */
+
+    df(1) = digamma((v+1)/2) - digamma(v/2);
+    df(1) -= log1p(zz/ssv) + 1/v - zz*(v+1) / (v*(ssv+zz));
     df(1) *= 0.5;
+    
     df(2) = (zz*v - ssv) / (s*(ssv + zz));
 
 

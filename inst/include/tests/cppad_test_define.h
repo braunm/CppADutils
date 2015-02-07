@@ -132,6 +132,7 @@ class run_test {
     }
 
     VectorXd hess_vals(nnz_LT);
+    hess_info.clear();
     size_t n_sweep = tape.SparseHessian(X, w, hs, iRow, jCol, hess_vals, hess_info);
     
     std::vector<TT> trips;

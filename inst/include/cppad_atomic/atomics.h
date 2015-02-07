@@ -101,6 +101,7 @@ AScalar dt_log(const AScalar& z, const AScalar& v, const AScalar& s) {
   VectorXA x(3);
   x << z, v, s; 
   dt_log_func(x,y);
+  dt_log_func.clear();
   return(y[0]);
 }
 
@@ -127,6 +128,7 @@ AScalar incbeta(const AScalar& z, const AScalar& a, const AScalar& b) {
   VectorXA x(3);
   x << z, a, b; 
   incbeta_func(x,y);
+  incbeta_func.clear();
   return(y[0]);
 }
 
@@ -137,6 +139,7 @@ AScalar incgamma(const AScalar& z, const AScalar& r) {
   VectorXA x(2);
   x << z, r;
   incgamma_func(x,y);
+  incgamma_func.clear();
   return(y[0]);
 }
 
@@ -157,6 +160,7 @@ AScalar lbeta (const AScalar& a, const AScalar& b) {
   VectorXA x(2);
   x << a, b;
   lbeta_func(x,y);
+  lbeta_func.clear();
   return(y[0]);
 }
 
