@@ -123,12 +123,12 @@ class run_test {
     size_t idx = 0;
     for (size_t ii=0; ii<nvars; ii++) {      
       for (auto jj = hs[ii].begin(); jj != hs[ii].end(); ++jj) {
-	if (*jj <= ii) {
-    	  iRow(idx) = ii;
-    	  jCol(idx) = *jj;
-    	  idx++;
-    	}
-      }
+      	if (*jj <= ii) {
+      	  iRow(idx) = ii;
+      	  jCol(idx) = *jj;
+      	  idx++;
+      	}
+      }      
     }
 
     VectorXd hess_vals(nnz_LT);

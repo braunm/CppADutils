@@ -180,8 +180,6 @@ class mb_atomic : public CppAD::atomic_base<double> {
 			      ) 
   {
     size_t n = vx.size();
-    size_t m = s.size();
-    assert(m==1);
 
     for (size_t i=0; i<n; i++) {
       t[i] = s[0];
@@ -192,11 +190,6 @@ class mb_atomic : public CppAD::atomic_base<double> {
     	}
       }
     }
-
-
-  
-
-    
     
     return true;
 

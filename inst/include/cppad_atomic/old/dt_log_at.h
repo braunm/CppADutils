@@ -24,7 +24,7 @@ class dt_log_cl {
     const double& v = x(1);
     const double& s = x(2);
 
-    f = lgammafn((v+1)/2) - lgammafn(v/2);
+    f = lgammafn(0.5*(v+1)) - lgammafn(0.5*v);
     f -= 0.5 * ((v+1) * log1p(z*z/(s*s*v)) + log(v));
     f -= log(s) + M_LN_SQRT_PI;
   }

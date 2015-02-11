@@ -2,9 +2,7 @@
 #define __CPPADUTILS_ATOMICS
 
 #include <cppad_atomic/expm1_at.h>
-#include <cppad_atomic/dnorm_log_at.h>
-#include <cppad_atomic/dnormTrunc0_log_at.h>
-#include <cppad_atomic/dt_log_at.h>
+//#include <cppad_atomic/dt_log_at.h>
 #include <cppad_atomic/incgamma_at.h>
 #include <cppad_atomic/incbeta_at.h>
 #include <cppad_atomic/invlogit_at.h>
@@ -16,17 +14,14 @@
 #include <cppad_atomic/log1pexp_at.h>
 #include <cppad_atomic/log1pmx_at.h>
 #include <cppad_atomic/loginvlogit_at.h>
-#include <cppad_atomic/pnorm_log_at.h>
 #include <cppad_atomic/dbeta_log_at.h>
 #include <cppad_atomic/dlogitbeta_log_at.h>
 
 inline AScalar expm1(const AScalar&);
 inline AScalar dbeta_log(const AScalar&, const AScalar&, const AScalar&);
 inline AScalar dlogitbeta_log(const AScalar&, const AScalar&, const AScalar&);
-inline AScalar dhalft_log(const AScalar&, const AScalar&, const AScalar&);
-inline AScalar dnorm_log(const AScalar&, const AScalar&, const AScalar&);
-inline AScalar dnormTrunc0_log(const AScalar&, const AScalar&, const AScalar&);
-inline AScalar dt_log(const AScalar&, const AScalar&, const AScalar&);
+//inline AScalar dhalft_log(const AScalar&, const AScalar&, const AScalar&);
+//inline AScalar dt_log(const AScalar&, const AScalar&, const AScalar&);
 inline AScalar incbeta(const AScalar&, const AScalar&, const AScalar&);
 inline AScalar incgamma(const AScalar&, const AScalar&);
 inline AScalar invlogit(const AScalar&);
@@ -38,9 +33,9 @@ inline AScalar log1p(const AScalar&);
 inline AScalar log1pexp(const AScalar&);
 inline AScalar log1pmx(const AScalar&);
 inline AScalar loginvlogit(const AScalar&);
-inline AScalar loginvlogit(const AScalar&);
-inline AScalar pnorm_log(const AScalar&, const AScalar&, const AScalar&);
 
+
+#include <cppad_atomic/distributions.h>
 
 AScalar lgamma(const AScalar& a) {
   
@@ -49,16 +44,6 @@ AScalar lgamma(const AScalar& a) {
   VectorXA x(1);
   x << a;
   lgamma_func(x,y);
-  return(y[0]);
-}
-
-AScalar dnorm_log(const AScalar& z, const AScalar& m, const AScalar& s) {
-      
-  static mb_atomic<dnorm_log_cl> dnorm_log_func("atomic_dnorm_log");
-  VectorXA y(1);     
-  VectorXA x(3);
-  x << z, m, s; 
-  dnorm_log_func(x,y);
   return(y[0]);
 }
 
@@ -83,33 +68,22 @@ AScalar dlogitbeta_log(const AScalar& z, const AScalar& a, const AScalar& b) {
   return(y[0]);
 }
 
-AScalar dnormTrunc0_log(const AScalar& z, const AScalar& m, const AScalar& s) {
+/* AScalar dt_log(const AScalar& z, const AScalar& v, const AScalar& s) { */
       
-  static mb_atomic<dnormTrunc0_log_cl>
-    dnormTrunc0_log_func("atomic_dnormTrunc0_log");
-  VectorXA y(1);     
-  VectorXA x(3);
-  x << z, m, s; 
-  dnormTrunc0_log_func(x,y);
-  return(y[0]);
-}
+/*   static mb_atomic<dt_log_cl> dt_log_func("atomic_dt_log"); */
+/*   VectorXA y(1);      */
+/*   VectorXA x(3); */
+/*   x << z, v, s;  */
+/*   dt_log_func(x,y); */
+/*   dt_log_func.clear(); */
+/*   return(y[0]); */
+/* } */
 
-AScalar dt_log(const AScalar& z, const AScalar& v, const AScalar& s) {
+/* AScalar dhalft_log(const AScalar& z, const AScalar& v, const AScalar& s) { */
       
-  static mb_atomic<dt_log_cl> dt_log_func("atomic_dt_log");
-  VectorXA y(1);     
-  VectorXA x(3);
-  x << z, v, s; 
-  dt_log_func(x,y);
-  dt_log_func.clear();
-  return(y[0]);
-}
-
-AScalar dhalft_log(const AScalar& z, const AScalar& v, const AScalar& s) {
-      
-  AScalar res = M_LN2 + dt_log(z, v, s);
-  return(res);
-}
+/*   AScalar res = M_LN2 + dt_log(z, v, s); */
+/*   return(res); */
+/* } */
 
 AScalar expm1(const AScalar& a) {
   
@@ -223,15 +197,6 @@ AScalar loginvlogit(const AScalar& a) {
   return(y[0]);
 }
     
-    
-AScalar pnorm_log(const AScalar& z, const AScalar& m, const AScalar& s) {
-      
-  static mb_atomic<pnorm_log_cl> pnorm_log_func("atomic_pnorm_log");
-  VectorXA y(1);     
-  VectorXA x(3);
-  x << z, m, s; 
-  pnorm_log_func(x,y);
-  return(y[0]);
-}
+
 
 #endif

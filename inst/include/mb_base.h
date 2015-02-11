@@ -126,9 +126,11 @@ void MB_Base<TM>::hessian_init(const NumericVector& P_)
 
   // Rcout << "Computing nnz for one triangle
   size_t nnz_all = 0;
+
   for (auto ii=sp.begin(); ii != sp.end(); ++ii) {
     nnz_all += (*ii).size();
   }
+  
   nnz = (nnz_all + nvars_)/2;
   
   // extracting row and column indices for lower triangle of Hessian
@@ -138,9 +140,9 @@ void MB_Base<TM>::hessian_init(const NumericVector& P_)
   for (size_t ii=0; ii<sp.size(); ii++) {
     for (auto jj=sp[ii].begin(); jj != sp[ii].end(); ++jj) {
       if (*jj <= ii) {
-	iRow(idx) = ii;
-	jCol(idx) = *jj;
-	idx++;
+    	iRow(idx) = ii;
+    	jCol(idx) = *jj;
+    	idx++;
       }
     }
   }

@@ -219,7 +219,7 @@ struct dnormTrunc0_log_test {
     for (size_t i=0; i<n; i++) {
       res += dnormTrunc0_log(Y(3*i), Y(3*i+1), Y(3*i+2));
     }
-    return res;
+    return(res*res);
   }
 };
 
@@ -243,7 +243,7 @@ struct dhalft_log_test {
     for (size_t i=0; i<n; i++) {
       res += dhalft_log(Y(3*i), Y(3*i+1), Y(3*i+2));
     }
-    return res;
+    return res*Y(0);
   }
 };
 
@@ -266,9 +266,9 @@ struct pnorm_log_test {
     size_t n = Y.size()/3;
     AScalar res = 0.0;
     for (size_t i=0; i<n; i++) {
-      res += pnorm_log(Y(3*i), Y(3*i+1), Y(3*i+2));
+      res += pnorm_log(Y(3*i)*Y(3*i), Y(3*i+1)*Y(3*i+1), Y(3*i+2)*Y(3*i+1));
     }
-    return res;
+    return res*res;
   }
 };
 

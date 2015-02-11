@@ -13,7 +13,7 @@ test_that("dnormTrunc0_log",{
         for (i in 1:n) {
             res <- res + fn(x[3*(i-1)+1], x[3*(i-1)+2], x[3*i])
         }
-        return(res)
+        return(res^2)
     }
 
     x <- c(0.8, 2.3, 4.4, 0.3, 2.0, 2.1, -1, .2, 3)

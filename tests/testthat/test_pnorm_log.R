@@ -3,7 +3,7 @@ context("pnorm_log")
 test_that("pnorm_log",{
 
     fn <- function(z, m, s) {
-        res <- pnorm(z, m, s, log=TRUE, lower.tail=TRUE)
+        res <- pnorm(z^2, m^2, s*m, log=TRUE, lower.tail=TRUE)
         return(res)
     }
     
@@ -13,7 +13,7 @@ test_that("pnorm_log",{
         for (i in 1:n) {
             res <- res + fn(x[3*(i-1)+1], x[3*(i-1)+2], x[3*i])
         }
-        return(res)
+        return(res*res)
     }
 
     x <- c(-0.8, 1.3, 4.4, 0.3, 2.0, 2.1, -1, .2, 3)
