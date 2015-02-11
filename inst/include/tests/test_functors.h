@@ -1,5 +1,5 @@
 #include <tests/cppad_test_define.h>
-#include <cppad_atomic/atomics.h>
+#include <cppad_atomics.h>
 
 struct lbeta1 {  
   template<typename TA>  
@@ -9,7 +9,7 @@ struct lbeta1 {
     for (size_t i=0; i<n; i++) {
       res += lbeta(Y(2*i), Y(2*i+1));
     }
-    return res;
+    return res*res;
   }
 };
 
@@ -265,9 +265,12 @@ struct pnorm_log_test {
   AScalar eval(const MatrixBase<TA>& Y) {
     size_t n = Y.size()/3;
     AScalar res = 0.0;
+    //  Rcout << "\n";
     for (size_t i=0; i<n; i++) {
-      res += pnorm_log(Y(3*i)*Y(3*i), Y(3*i+1)*Y(3*i+1), Y(3*i+2)*Y(3*i+1));
+      res += pnorm_log(Y(3*i), Y(3*i+1), Y(3*i+2));
+      //     Rcout << Y(3*i) << "\t" << Y(3*i+1) << "\t" <<  Y(3*i+2) << "\n";
     }
+    //   Rcout << "\n";
     return res*res;
   }
 };

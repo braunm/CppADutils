@@ -3,7 +3,7 @@ context("pnorm_log")
 test_that("pnorm_log",{
 
     fn <- function(z, m, s) {
-        res <- pnorm(z^2, m^2, s*m, log=TRUE, lower.tail=TRUE)
+        res <- pnorm(z, m, s, log=TRUE, lower.tail=TRUE)
         return(res)
     }
     
@@ -16,7 +16,7 @@ test_that("pnorm_log",{
         return(res*res)
     }
 
-    x <- c(-0.8, 1.3, 4.4, 0.3, 2.0, 2.1, -1, .2, 3)
+    x <- c(0, .5, 1, 0, .5, 1) ##, -.1, .2, .3)
 
     R_val <- R_func(x)
     R_grad <- grad(R_func, x, method.args=list(r=8))
@@ -32,7 +32,7 @@ test_that("pnorm_log",{
  
     expect_equal(c_val, R_val)
     expect_equal(c_grad, R_grad, tolerance=1e-5)
-    expect_equal(c_hess_dense, R_hess, tolerance=1e-6)
+    expect_equal(c_hess_dense, R_hess, tolerance=1e-5)
     expect_equal(c_hess_dense, c_hess_sp)
     expect_equal(c_hess_spLT, tril(drop0(c_hess_sp, 1e-8)))
     expect_equal(c_hess_spLT, R_hess_spLT, tolerance=1e-6)   

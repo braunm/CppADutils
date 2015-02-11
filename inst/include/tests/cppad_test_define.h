@@ -89,8 +89,9 @@ class run_test {
     /* Rcout << "grad:\n" << grad << "\n\n"; */
     /* Rcout << "hess_dense:\n" << hess_dense << "\n\n"; */
 
-    MatrixXd hess_sparse = MatrixXd::Map(tape.SparseHessian(X, w).data(),
-					 nvars, nvars);
+    tape.Jacobian(X);
+    auto hsp = tape.SparseHessian(X, w);
+    MatrixXd hess_sparse = MatrixXd::Map(hsp.data(), nvars, nvars);
    
 
     
@@ -161,12 +162,12 @@ class run_test {
 
 
     List res = List::create(Named("val") = wrap(val),
-			  Named("grad") = wrap(grad),
-			  Named("hess.dense") = wrap(hess_dense),
-			  Named("hess.sp") = wrap(hess_sparse),
-			  Named("hess.spLT") = wrap(H_LT),
-			  //			  Named("new.driver") = wrap(H_new)
-			  Named("n_sweep") = wrap(n_sweep)			  
+			    Named("grad") = wrap(grad),
+			    Named("hess.dense") = wrap(hess_dense),
+			    Named("hess.sp") = wrap(hess_sparse),
+			    Named("hess.spLT") = wrap(H_LT),
+			    Named("n_sweep") = wrap(n_sweep),
+			    Named("spvec") = wrap(hsp)
 			  );
   return(res);
   }

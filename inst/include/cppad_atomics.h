@@ -2,7 +2,6 @@
 #define __CPPADUTILS_ATOMICS
 
 #include <cppad_atomic/expm1_at.h>
-//#include <cppad_atomic/dt_log_at.h>
 #include <cppad_atomic/incgamma_at.h>
 #include <cppad_atomic/incbeta_at.h>
 #include <cppad_atomic/invlogit_at.h>
@@ -20,8 +19,6 @@
 inline AScalar expm1(const AScalar&);
 inline AScalar dbeta_log(const AScalar&, const AScalar&, const AScalar&);
 inline AScalar dlogitbeta_log(const AScalar&, const AScalar&, const AScalar&);
-//inline AScalar dhalft_log(const AScalar&, const AScalar&, const AScalar&);
-//inline AScalar dt_log(const AScalar&, const AScalar&, const AScalar&);
 inline AScalar incbeta(const AScalar&, const AScalar&, const AScalar&);
 inline AScalar incgamma(const AScalar&, const AScalar&);
 inline AScalar invlogit(const AScalar&);
@@ -34,8 +31,8 @@ inline AScalar log1pexp(const AScalar&);
 inline AScalar log1pmx(const AScalar&);
 inline AScalar loginvlogit(const AScalar&);
 
-
-#include <cppad_atomic/distributions.h>
+#include <utilfuncs.h>
+#include <distributions.h>
 
 AScalar lgamma(const AScalar& a) {
   
@@ -68,22 +65,6 @@ AScalar dlogitbeta_log(const AScalar& z, const AScalar& a, const AScalar& b) {
   return(y[0]);
 }
 
-/* AScalar dt_log(const AScalar& z, const AScalar& v, const AScalar& s) { */
-      
-/*   static mb_atomic<dt_log_cl> dt_log_func("atomic_dt_log"); */
-/*   VectorXA y(1);      */
-/*   VectorXA x(3); */
-/*   x << z, v, s;  */
-/*   dt_log_func(x,y); */
-/*   dt_log_func.clear(); */
-/*   return(y[0]); */
-/* } */
-
-/* AScalar dhalft_log(const AScalar& z, const AScalar& v, const AScalar& s) { */
-      
-/*   AScalar res = M_LN2 + dt_log(z, v, s); */
-/*   return(res); */
-/* } */
 
 AScalar expm1(const AScalar& a) {
   
@@ -197,6 +178,4 @@ AScalar loginvlogit(const AScalar& a) {
   return(y[0]);
 }
     
-
-
 #endif

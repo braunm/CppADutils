@@ -2,7 +2,7 @@
 #define __AD_WISHART
 
 #include <utilfuncs.h>
-#include <cppad_atomic/atomics.h>
+#include <cppad_atomics.h>
 
 
 using Eigen::MatrixBase;

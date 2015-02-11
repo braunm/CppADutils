@@ -8,7 +8,7 @@ test_that("lbeta1",{
         for (i in 1:n) {
             res <- res + lbeta(x[2*(i-1)+1],x[2*i])
         }
-        return(res)
+        return(res^2)
     }
 
     x <- c(.4, 2.2, 4.4, 3.3, 5, 1.5)

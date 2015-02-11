@@ -1,7 +1,10 @@
 #ifndef __CPPADUTILS_UTILFUNCS
 #define __CPPADUTILS_UTILFUNCS
 
-#include <cppad_atomic/atomics.h>
+#include <cppad_atomics.h>
+
+inline AScalar log_MVgamma(const AScalar&, int&);
+inline bool my_finite(const AScalar&);
 
 inline
 AScalar log_MVgamma(const AScalar& v,
@@ -17,5 +20,6 @@ inline
 bool my_finite(const AScalar& x) {
   return( (abs(x) <= __DBL_MAX__ ) && ( x == x ) );
 }
+
 
 #endif
