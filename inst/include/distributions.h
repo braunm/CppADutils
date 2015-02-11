@@ -13,37 +13,6 @@ inline AScalar MB_erf(const AScalar&);
 
 
 
-AScalar MB_erf_pos(const AScalar& x) {
-
-  const AScalar p = 0.3275911;
-  const AScalar a1 = 0.254829592;
-  const AScalar a2 = -0.284496736;
-  const AScalar a3 = 1.421413741;
-  const AScalar a4 = -1.453152027;
-  const AScalar a5 = 1.061405429;
-  
-  const AScalar t = 1/(1+p*x);
-
-  AScalar res = t*(a1 + t*(a2 + t*(a3 + t*(a4 + t*a5))));
-  res = 1 - res * exp(-x*x);
-  return(res);
-}
-
-
-AScalar MB_erf(const AScalar& x) {
-
-  AScalar r1 = MB_erf_pos(x);
-  AScalar r2 = -MB_erf_pos(-x);
-  AScalar res = CppAD::CondExpGe(x, AScalar(0), r1, r2);
-
-  return(res);
-}
-
-
-
-
-
-
 AScalar dnorm_log(const AScalar& x,
 		  const AScalar& m,
 		  const AScalar& s) {
@@ -57,7 +26,7 @@ AScalar pnorm_log(const AScalar& x,
 		  const AScalar& s) {
 
   AScalar z = (x-m)/s;
-  AScalar res = log(1+MB_erf(z*M_SQRT1_2)) - M_LN2;
+  AScalar res = log(AScalar(1) + MB_erf(z*M_SQRT1_2)) - M_LN2;
 
   return(res);
 }
@@ -86,6 +55,31 @@ AScalar dhalft_log(const AScalar& z, const AScalar& v, const AScalar& s) {
   return(res);
 }
 
+AScalar MB_erf_pos(const AScalar& x) {
+
+  const AScalar p = 0.3275911;
+  const AScalar a1 = 0.254829592;
+  const AScalar a2 = -0.284496736;
+  const AScalar a3 = 1.421413741;
+  const AScalar a4 = -1.453152027;
+  const AScalar a5 = 1.061405429;
+  
+  const AScalar t = 1/(1+p*x);
+
+  AScalar res = t*(a1 + t*(a2 + t*(a3 + t*(a4 + t*a5))));
+  res = 1 - res * exp(-x*x);
+  return(res);
+}
+
+
+AScalar MB_erf(const AScalar& x) {
+
+  AScalar r1 = MB_erf_pos(x);
+  AScalar r2 = -MB_erf_pos(-x);
+  AScalar res = CppAD::CondExpGe(x, AScalar(0), r1, r2);
+
+  return(res);
+}
 
 
 
