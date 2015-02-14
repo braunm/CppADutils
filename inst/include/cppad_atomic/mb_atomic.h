@@ -7,7 +7,6 @@
 #include <RcppEigen.h>
 #include <Eigen/Core>
 #include <cppad/cppad.hpp>
-#include "union.h"
 
 using Eigen::Dynamic;
 using Eigen::MatrixBase;
@@ -34,7 +33,24 @@ class mb_atomic : public CppAD::atomic_base<double> {
 
   ~mb_atomic() {}
       
- private:     
+ private:
+
+  inline void my_union( 
+		       std::set<size_t>&         result  , 
+		       const std::set<size_t>&   left    , 
+		       const std::set<size_t>&   right   ) 
+  {  
+    std::set<size_t> temp; 
+    std::set_union( 
+		   left.begin()              , 
+		   left.end()                , 
+		   right.begin()             , 
+		   right.end()               , 
+		   std::inserter(temp, temp.begin()) 
+		    ); 
+    result.swap(temp); 
+  }
+  
       
   // ----------------------------------------------------------------------
   // forward mode routine called by CppAD
@@ -102,7 +118,6 @@ class mb_atomic : public CppAD::atomic_base<double> {
 		       )
   {		
     size_t n = tx.size() / (q+1);
-    //size_t n = tx.size();
     
     const Map<const MatrixXd> x = MatrixXd::Map(&(tx[0]), q+1, n);
 	
@@ -143,8 +158,7 @@ class mb_atomic : public CppAD::atomic_base<double> {
 			      const vector<std::set<size_t> >&   r , 
 			      vector<std::set<size_t> >&         s
 			      ) {
-    //   size_t n = r.size() / q;
-       size_t n = r.size();
+    size_t n = r.size();
     s[0] = r[0];
     for (size_t i=0; i<n; i++) {
       my_union(s[0], s[0], r[i]);
