@@ -166,12 +166,12 @@ struct incbeta_test2 {
   AScalar eval(const MatrixBase<TA>& Y) {
     size_t n = Y.size()/3;
     AScalar res1 = 0.0;
-    //  AScalar res2 = 0.0;
+    AScalar res2 = 0.0;
     for (size_t i=0; i<n; i++) {
       res1 += incbeta(Y(3*i), Y(3*i+1), Y(3*i+2));
-      //      res2 += dhalft_log(Y(3*i), Y(3*i+1), Y(3*i+2));
+      res2 += dhalft_log(Y(3*i), Y(3*i+1), Y(3*i+2));
     }
-    return (res1*res1);
+    return (res1*res2);
   }
 };
 

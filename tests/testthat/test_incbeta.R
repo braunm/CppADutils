@@ -50,12 +50,12 @@ test_that("incbeta2",{
     R_func <- function(x) {
         n <- length(x)/3
         res1 <- 0
-##        res2 <- 0
+        res2 <- 0
         for (i in 1:n) {
             res1 <- res1 + pbeta(x[3*(i-1)+1], x[3*(i-1)+2], x[3*i])
-##            res2 <- res2 + halft(x[3*(i-1)+1], x[3*(i-1)+2], x[3*i])
+            res2 <- res2 + halft(x[3*(i-1)+1], x[3*(i-1)+2], x[3*i])
         }
-        return(res1*res1)
+        return(res1*res2)
     }
 
     x <- c(0.8, 2.3, 4.4, 0.3, 2.0, 2.1)
