@@ -35,10 +35,10 @@ class mb_atomic : public CppAD::atomic_base<double> {
       
  private:
 
-  inline void my_union( 
-		       std::set<size_t>&         result  , 
-		       const std::set<size_t>&   left    , 
-		       const std::set<size_t>&   right   ) 
+  void my_union( 
+		std::set<size_t>&         result  , 
+		const std::set<size_t>&   left    , 
+		const std::set<size_t>&   right   ) 
   {  
     std::set<size_t> temp; 
     std::set_union( 

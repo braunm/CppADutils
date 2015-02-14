@@ -34,11 +34,18 @@ inline AScalar loginvlogit(const AScalar&);
 #include <utilfuncs.h>
 #include <distributions.h>
 
+typedef Eigen::Matrix<AScalar, 1, 1> Vector1A;
+typedef Eigen::Matrix<AScalar, 2, 1> Vector2A;
+typedef Eigen::Matrix<AScalar, 3, 1> Vector3A;
+
+
 AScalar lgamma(const AScalar& a) {
   
   static mb_atomic<lgamma_cl> lgamma_func("atomic_lgamma");
-  VectorXA y(1);  
-  VectorXA x(1);
+  // VectorXA y(1);  
+  // VectorXA x(1);
+  Vector1A y, x;
+
   x << a;
   lgamma_func(x,y);
   return(y[0]);
