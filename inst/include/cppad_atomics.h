@@ -35,15 +35,10 @@ inline AScalar loginvlogit(const AScalar&);
 #include <distributions.h>
 
 typedef Eigen::Matrix<AScalar, 1, 1> Vector1A;
-typedef Eigen::Matrix<AScalar, 2, 1> Vector2A;
-typedef Eigen::Matrix<AScalar, 3, 1> Vector3A;
-
 
 AScalar lgamma(const AScalar& a) {
   
   static mb_atomic<lgamma_cl> lgamma_func("atomic_lgamma");
-  // VectorXA y(1);  
-  // VectorXA x(1);
   Vector1A y, x;
 
   x << a;
@@ -76,8 +71,7 @@ AScalar dlogitbeta_log(const AScalar& z, const AScalar& a, const AScalar& b) {
 AScalar expm1(const AScalar& a) {
   
   static mb_atomic<expm1_cl> expm1_func("atomic_expm1");
-  VectorXA y(1);
-  VectorXA x(1);
+  Vector1A x, y;
   x << a;
   expm1_func(x,y);
   return(y[0]);
@@ -108,8 +102,7 @@ AScalar incgamma(const AScalar& z, const AScalar& r) {
 AScalar invlogit(const AScalar& a) {
   
   static mb_atomic<invlogit_cl> invlogit_func("atomic_invlogit");
-  VectorXA y(1);
-  VectorXA x(1);
+  Vector1A x, y;
   x << a;
   invlogit_func(x,y);
   return(y[0]);
@@ -128,8 +121,7 @@ AScalar lbeta (const AScalar& a, const AScalar& b) {
 
 AScalar lgamma1p(const AScalar& a) {
   static mb_atomic<lgamma1p_cl> lgamma1p_func("atomic_lgamma1p");
-  VectorXA x(1);
-  VectorXA y(1);
+  Vector1A x, y;
   x << a;
   lgamma1p_func(x,y);
   return(y[0]);
@@ -138,8 +130,7 @@ AScalar lgamma1p(const AScalar& a) {
 AScalar lgammaexp(const AScalar& a) {
   
   static mb_atomic<lgammaexp_cl> lgammaexp_func("atomic_lgammaexp");
-  VectorXA y(1);
-  VectorXA x(1);
+  Vector1A x, y;
   x << a;
   lgammaexp_func(x,y);
   return(y[0]);
@@ -148,8 +139,7 @@ AScalar lgammaexp(const AScalar& a) {
 AScalar log1p(const AScalar& a) {
   
   static mb_atomic<log1p_cl> log1p_func("atomic_log1p");
-  VectorXA y(1);
-  VectorXA x(1);
+  Vector1A x, y;
   x << a;
   log1p_func(x,y);
   return(y[0]);
@@ -158,8 +148,7 @@ AScalar log1p(const AScalar& a) {
 AScalar log1pexp(const AScalar& a) {
   
   static mb_atomic<log1pexp_cl> log1pexp_func("atomic_log1pexp");
-  VectorXA y(1);
-  VectorXA x(1);
+  Vector1A x, y;
   x << a;
   log1pexp_func(x,y);
   return(y[0]);
@@ -168,8 +157,7 @@ AScalar log1pexp(const AScalar& a) {
 AScalar log1pmx(const AScalar& a) {
   
   static mb_atomic<log1pmx_cl> log1pmx_func("atomic_log1pmx");
-  VectorXA y(1);
-  VectorXA x(1);
+  Vector1A x, y;
   x << a;
   log1pmx_func(x,y);
   return(y[0]);
@@ -178,8 +166,7 @@ AScalar log1pmx(const AScalar& a) {
 AScalar loginvlogit(const AScalar& a) {
   
   static mb_atomic<loginvlogit_cl> loginvlogit_func("atomic_loginvlogit");
-  VectorXA y(1);
-  VectorXA x(1);
+  Vector1A x, y;
   x << a;
   loginvlogit_func(x,y);
   return(y[0]);
