@@ -51,6 +51,7 @@ class MB_Base {
   
   List get_tape_stats();
   void record_tape(const NumericVector&);
+  void record_to_abort(const NumericVector&, const size_t&);
 
   CppAD::ADFun<double> tape;
   bool tape_ready;
@@ -87,7 +88,8 @@ MB_Base<TM>::~MB_Base() {
   model.reset();
 }
 
-template<typename TM>									       void MB_Base<TM>::record_tape(const NumericVector& P_) {
+template<typename TM>
+void MB_Base<TM>::record_tape(const NumericVector& P_) {
   
   nvars_ = P_.size();
   VectorXA f(1); // to hold result 
@@ -101,6 +103,19 @@ template<typename TM>									       void MB_Base<TM>::record_tape(const Numeric
 #endif
   tape.check_for_nan(false);
   tape_ready = true;
+}
+
+template<typename TM>
+void MB_Base<TM>::record_to_abort(const NumericVector& P_, const size_t& op) {
+  
+  nvars_ = P_.size();
+  VectorXA f(1); // to hold result 
+  VectorXd Pd = VectorXd::Map(P_.begin(), nvars_);
+  VectorXA P = Pd.cast<AScalar>();
+  CppAD::Independent(P, op);
+  f(0) = model->eval_f(P);
+  tape.Dependent(P, f);
+  tape_ready = false;
 }
 
 
@@ -168,9 +183,12 @@ double MB_Base<TM>::get_f(const NumericVector& P_) {
   f = tape.Forward(0, P);
   
 #ifndef NDEBUG
-  size_t bad_tape = tape.CompareChange();
+  //  size_t bad_tape = tape.CompareChange();
+  size_t bad_tape = tape.compare_change_op_index();
   if (bad_tape != 0) {
-    throw MyException("Tape operations incorrect.  Must retape", __FILE__, __LINE__);
+    Rcout << "At index " << bad_tape << ".  Aborting now:\n";
+    record_to_abort(P_, bad_tape);
+    throw MyException("Tape operations incorrect.  Must retape\n", __FILE__, __LINE__);
   }
 #endif
   
