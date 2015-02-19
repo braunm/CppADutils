@@ -99,6 +99,7 @@ template<typename TM>									       void MB_Base<TM>::record_tape(const Numeric
 #ifdef NDEBUG
   tape.optimize();
 #endif
+  tape.check_for_nan(false);
   tape_ready = true;
 }
 
