@@ -98,9 +98,9 @@ void MB_Base<TM>::record_tape(const NumericVector& P_) {
   CppAD::Independent(P);
   f(0) = model->eval_f(P);
   tape.Dependent(P, f);
-#ifdef NDEBUG
+  //#ifdef NDEBUG
   tape.optimize();
-#endif
+  //#endif
   tape.check_for_nan(false);
   tape_ready = true;
 }
@@ -183,7 +183,6 @@ double MB_Base<TM>::get_f(const NumericVector& P_) {
   f = tape.Forward(0, P);
   
 #ifndef NDEBUG
-  //  size_t bad_tape = tape.CompareChange();
   size_t bad_tape = tape.compare_change_op_index();
   if (bad_tape != 0) {
     Rcout << "At index " << bad_tape << ".  Aborting now:\n";
@@ -215,8 +214,11 @@ List MB_Base<TM>::get_fdf(const NumericVector& P_) {
   VectorXd P = VectorXd::Map(P_.begin(),nvars_); 
   VectorXd f(1);
   f = tape.Forward(0,P);
-  VectorXd df = tape.Jacobian(P);
+
   
+  VectorXd df = tape.Jacobian(P);
+
+  assert(!df.hasNaN());
   List res = List::create(Rcpp::Named("val") = f,
 			  Rcpp::Named("grad") = Rcpp::wrap(df)
 			  );
