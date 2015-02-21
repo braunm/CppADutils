@@ -214,6 +214,7 @@ List MB_Base<TM>::get_fdf(const NumericVector& P_) {
   VectorXd P = VectorXd::Map(P_.begin(),nvars_); 
   VectorXd f(1);
   f = tape.Forward(0,P);
+
 #ifndef NDEBUG
   size_t bad_tape = tape.compare_change_op_index();
   if (bad_tape != 0) {
@@ -224,7 +225,8 @@ List MB_Base<TM>::get_fdf(const NumericVector& P_) {
 #endif
   
   VectorXd df = tape.Jacobian(P);
-  
+
+  assert(!df.hasNaN());
   List res = List::create(Rcpp::Named("val") = f,
 			  Rcpp::Named("grad") = Rcpp::wrap(df)
 			  );
