@@ -6,6 +6,21 @@
 
 using namespace Rcpp;
 
+// LDLT_test
+List LDLT_test(const NumericMatrix& A_);
+RcppExport SEXP CppADutils_LDLT_test(SEXP A_SEXP) {
+BEGIN_RCPP
+    SEXP __sexp_result;
+    {
+        Rcpp::RNGScope __rngScope;
+        Rcpp::traits::input_parameter< const NumericMatrix& >::type A_(A_SEXP );
+        List __result = LDLT_test(A_);
+        PROTECT(__sexp_result = Rcpp::wrap(__result));
+    }
+    UNPROTECT(1);
+    return __sexp_result;
+END_RCPP
+}
 // MVN_test
 NumericVector MVN_test(NumericMatrix X_, NumericMatrix mu_, NumericMatrix G_, bool isPrec);
 RcppExport SEXP CppADutils_MVN_test(SEXP X_SEXP, SEXP mu_SEXP, SEXP G_SEXP, SEXP isPrecSEXP) {
