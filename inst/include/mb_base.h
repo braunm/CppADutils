@@ -182,14 +182,14 @@ double MB_Base<TM>::get_f(const NumericVector& P_) {
   VectorXd f(1);
   f = tape.Forward(0, P);
   
-#ifndef NDEBUG
+  //#ifndef NDEBUG
   size_t bad_tape = tape.compare_change_op_index();
   if (bad_tape != 0) {
     Rcout << "At index " << bad_tape << ".  Aborting now:\n";
     record_to_abort(P_, bad_tape);
     throw MyException("Tape operations incorrect.  Must retape\n", __FILE__, __LINE__);
   }
-#endif
+  //#endif
   
   return(f(0)); 
 }
