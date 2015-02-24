@@ -26,7 +26,7 @@ AScalar pnorm_log(const AScalar& x,
 		  const AScalar& s) {
 
   AScalar z = (x-m)/s;
-  AScalar res = log(AScalar(1) + erf(z*M_SQRT1_2)) - M_LN2;
+  AScalar res = log1p(erf(z*M_SQRT1_2)) - M_LN2;
 
   return(res);
 }

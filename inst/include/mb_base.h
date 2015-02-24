@@ -101,7 +101,7 @@ void MB_Base<TM>::record_tape(const NumericVector& P_) {
   //#ifdef NDEBUG
   tape.optimize();
   //#endif
-  tape.check_for_nan(false);
+  tape.check_for_nan(true);
   tape_ready = true;
 }
 
