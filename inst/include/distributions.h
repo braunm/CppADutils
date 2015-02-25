@@ -6,6 +6,7 @@
 inline AScalar dnorm_log(const AScalar&, const AScalar&, const AScalar&);
 inline AScalar dnormTrunc0_log(const AScalar&, const AScalar&, const AScalar&);
 inline AScalar pnorm_log(const AScalar&, const AScalar&, const AScalar&);
+inline AScalar pnorm(const AScalar&, const AScalar&, const AScalar&);
 inline AScalar dt_log(const AScalar&, const AScalar&, const AScalar&);
 inline AScalar dhalft_log(const AScalar&, const AScalar&, const AScalar&);
 inline AScalar MB_erf_pos(const AScalar&);
@@ -28,6 +29,16 @@ AScalar pnorm_log(const AScalar& x,
   AScalar z = (x-m)/s;
   AScalar res = log1p(erf(z*M_SQRT1_2)) - M_LN2;
 
+  return(res);
+}
+
+AScalar pnorm(const AScalar& x,
+	      const AScalar& m,
+	      const AScalar& s) {
+  
+  AScalar z = (x-m)/s;
+  AScalar res = 0.5*(1+erf(z*M_SQRT1_2));
+  
   return(res);
 }
 
@@ -80,7 +91,5 @@ AScalar MB_erf(const AScalar& x) {
 
   return(res);
 }
-
-
 
 #endif

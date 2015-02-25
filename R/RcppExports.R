@@ -213,6 +213,12 @@ cppad_pnorm_log <- function(X) {
     .Call('CppADutils_cppad_pnorm_log', PACKAGE = 'CppADutils', X)
 }
 
+#' @inheritParams CppADutils-tests
+#' @rdname CppADutils-tests
+cppad_pnorm <- function(X) {
+    .Call('CppADutils_cppad_pnorm', PACKAGE = 'CppADutils', X)
+}
+
 Wish_test <- function(X_, nu_, S_) {
     .Call('CppADutils_Wish_test', PACKAGE = 'CppADutils', X_, nu_, S_)
 }

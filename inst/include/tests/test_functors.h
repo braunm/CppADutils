@@ -275,6 +275,21 @@ struct pnorm_log_test {
   }
 };
 
+struct pnorm_test {  
+  template<typename TA>  
+  AScalar eval(const MatrixBase<TA>& Y) {
+    size_t n = Y.size()/3;
+    AScalar res = 0.0;
+    //  Rcout << "\n";
+    for (size_t i=0; i<n; i++) {
+      res += pnorm(Y(3*i), Y(3*i+1), Y(3*i+2));
+      //     Rcout << Y(3*i) << "\t" << Y(3*i+1) << "\t" <<  Y(3*i+2) << "\n";
+    }
+    //   Rcout << "\n";
+    return res*res;
+  }
+};
+
 
 struct atan2_test_a {  
   template<typename TA>  

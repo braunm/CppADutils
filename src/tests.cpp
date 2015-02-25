@@ -258,3 +258,13 @@ Rcpp::List cppad_pnorm_log(const NumericVector& X) {
   return(res);
 }
 
+//' @inheritParams CppADutils-tests
+//' @rdname CppADutils-tests
+//[[Rcpp::export]]
+Rcpp::List cppad_pnorm(const NumericVector& X) {
+  run_test<pnorm_test> test;
+  test.record_tape(X);
+  Rcpp::List res = test.cppad_results();
+  return(res);
+}
+

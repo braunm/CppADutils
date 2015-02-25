@@ -519,6 +519,21 @@ BEGIN_RCPP
     return __sexp_result;
 END_RCPP
 }
+// cppad_pnorm
+Rcpp::List cppad_pnorm(const NumericVector& X);
+RcppExport SEXP CppADutils_cppad_pnorm(SEXP XSEXP) {
+BEGIN_RCPP
+    SEXP __sexp_result;
+    {
+        Rcpp::RNGScope __rngScope;
+        Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP );
+        Rcpp::List __result = cppad_pnorm(X);
+        PROTECT(__sexp_result = Rcpp::wrap(__result));
+    }
+    UNPROTECT(1);
+    return __sexp_result;
+END_RCPP
+}
 // Wish_test
 double Wish_test(NumericMatrix X_, double nu_, NumericMatrix S_);
 RcppExport SEXP CppADutils_Wish_test(SEXP X_SEXP, SEXP nu_SEXP, SEXP S_SEXP) {
