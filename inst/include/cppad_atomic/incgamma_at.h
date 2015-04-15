@@ -11,8 +11,12 @@ class incgamma_cl {
 
  private:
 
-  #include "digami.h"
-  
+  // extern "C" int digami(double*, double*, double*, double*,
+  //			double*, double*, double*, double*,
+  //			double*, int*);
+
+#include "digami.h"
+    
  public:
   
   template<typename TX>

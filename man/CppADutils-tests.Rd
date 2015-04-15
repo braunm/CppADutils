@@ -26,6 +26,7 @@
 \alias{cppad_log1pexp}
 \alias{cppad_log1pmx}
 \alias{cppad_loginvlogit}
+\alias{cppad_pnorm}
 \alias{cppad_pnorm_log}
 \title{tests}
 \usage{
@@ -78,6 +79,8 @@ cppad_atan2a(X)
 cppad_atan2b(X)
 
 cppad_pnorm_log(X)
+
+cppad_pnorm(X)
 }
 \arguments{
   \item{X}{numeric vector (not matrix at this time)}

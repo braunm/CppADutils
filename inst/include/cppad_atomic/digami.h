@@ -1,4 +1,6 @@
 #include <Rcpp.h>
+#include <cmath>
+
 
 int digami(double *d__, double *x, double *p, double *gplog,
 	   double * gp1log, double *psip, double *psip1,
@@ -134,11 +136,11 @@ L32:
     dpp[4] = b * dpp[2] + an * dpp[0] + two * (term * dp[0] - dp[2]);
     dpp[5] = b * dpp[3] + an * dpp[1] + two * (term * dp[1] - dp[3]);
 
-    if (abs(pn[5]) < vsmall) {
+    if (fabs(pn[5]) < vsmall) {
 	goto L35;
     }
     s = pn[4] / pn[5];
-    c__ = (r__1 = s - s0, abs(r__1));
+    c__ = (r__1 = s - s0, fabs(r__1));
     if (c__ * *p > e) {
 	goto L34;
     }
@@ -160,7 +162,7 @@ L35:
     if (term > tmax) {
 	goto L1001;
     }
-    if (abs(pn[4]) < oflo) {
+    if (fabs(pn[4]) < oflo) {
 	goto L32;
     }
     for (i__ = 1; i__ <= 4; ++i__) {
