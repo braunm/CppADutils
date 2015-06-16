@@ -28,10 +28,10 @@ void LDLT(const MatrixBase<TA>& A,
   MatrixBase<TD>& D = const_cast<MatrixBase<TD>&>(D_);
   
   size_t n = A.rows();
-  assert(A.cols() == n);
-  assert(L.rows() == n);
-  assert(L.cols() == n);
-  assert(D.size() == n); // D should be a vector
+  //  assert(A.cols() == n);
+  //  assert(L.rows() == n);
+  // assert(L.cols() == n);
+  // assert(D.size() == n); // D should be a vector
 
   L.setIdentity(n,n);
   D.setZero();

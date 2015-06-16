@@ -37,7 +37,7 @@ NumericVector MVN_test(NumericMatrix X_, NumericMatrix mu_,
   size_t k = X_.rows();
   size_t N = X_.cols();
   size_t q = mu_.cols();
-  assert(k == mu_.rows());
+  //  assert(k == mu_.rows());
 
   MatrixXA X = MatrixXd::Map(X_.begin(), k, N).cast<AScalar>();
   MatrixXA mu = MatrixXd::Map(mu_.begin(), k, q).cast<AScalar>();
@@ -68,7 +68,7 @@ NumericVector Sparse_MVN_test(NumericMatrix X_, NumericMatrix mu_,
   size_t k = X_.rows();
   size_t N = X_.cols();
   size_t q = mu_.cols();
-  assert(k == mu_.rows());
+  //  assert(k == mu_.rows());
 
   MatrixXA X = MatrixXd::Map(X_.begin(), k, N).cast<AScalar>();
   MatrixXA mu = MatrixXd::Map(mu_.begin(), k, q).cast<AScalar>();

@@ -12,6 +12,12 @@ using Eigen::PermutationMatrix;
 using Eigen::PermutationBase;
 using Eigen::SimplicialLLT;
 
+typedef CppAD::AD<double> AScalar;
+typedef Matrix<AScalar, Dynamic, Dynamic> MatrixXA;
+typedef Matrix<AScalar, Dynamic, 1> VectorXA;
+typedef Matrix<AScalar, 1, Dynamic> RowVectorXA;
+
+
 template<typename TY, typename TM, typename TG, typename TQ>
 void MVN_logpdf(const MatrixBase<TY>& Y,
 		const MatrixBase<TM>& mu,
@@ -19,7 +25,7 @@ void MVN_logpdf(const MatrixBase<TY>& Y,
 		const MatrixBase<TQ>& out_,
 		const bool isPrec = true) {
   
-  typedef typename TM::Scalar Scalar; 
+ 
   
   MatrixBase<TQ>& out = const_cast<MatrixBase<TQ>& >(out_);
 
@@ -32,8 +38,8 @@ void MVN_logpdf(const MatrixBase<TY>& Y,
   const int k = Y.rows();
   const int N = Y.cols();
 
-  Matrix<Scalar, Dynamic, Dynamic> Z = Y;
-  Scalar normConst;
+  MatrixXA Z = Y;
+  AScalar normConst;
 
   if (mu.rows() == k) {
     if (mu.cols() == N) {
@@ -48,7 +54,7 @@ void MVN_logpdf(const MatrixBase<TY>& Y,
     }
   }
 
-  Scalar cholGlogDet = chol_G.diagonal().array().log().sum();
+  AScalar cholGlogDet = chol_G.diagonal().array().log().sum();
 
   if (isPrec) {
     normConst = cholGlogDet - k * M_LN_SQRT_2PI;
@@ -58,7 +64,11 @@ void MVN_logpdf(const MatrixBase<TY>& Y,
     chol_G.template triangularView<Lower>().solveInPlace(Z);
   }
 
-  out.array() = normConst - 0.5 * (Z.array()*Z.array()).colwise().sum();
+  MatrixXA tmp = normConst - (0.5*Z.array()*Z.array()).colwise().sum();
+  out = tmp;
+
+
+    //out.array() = normConst - 0.5 * (Z.array()*Z.array()).colwise().sum();
 
 }
 
@@ -70,7 +80,7 @@ void MVN_logpdf(const MatrixBase<TY>& Y,
 		const MatrixBase<TQ>& out_,
 		const bool isPrec = true) {
   
-  typedef typename TM::Scalar Scalar; 
+
   
   MatrixBase<TQ>& out = const_cast<MatrixBase<TQ>& >(out_);
 
@@ -81,8 +91,8 @@ void MVN_logpdf(const MatrixBase<TY>& Y,
   const int k = Y.rows();
   const int N = Y.cols();
 
-  Matrix<Scalar, Dynamic, Dynamic> Z = Y;
-  Scalar normConst;
+  MatrixXA Z = Y;
+  AScalar normConst;
 
   if (mu.rows() == k) {
     if (mu.cols() == N) {
@@ -96,13 +106,13 @@ void MVN_logpdf(const MatrixBase<TY>& Y,
     }
   } 
 
-  Scalar Ldet = 0.;
+  AScalar Ldet = 0.;
   for (int i=0; i<k; i++) {
     Ldet += log(L.template derived().coeff(i,i));
   }
 
   Z = P*Z;
-  Matrix<Scalar, Dynamic, Dynamic> tmp(k,N);
+  MatrixXA tmp(k,N);
 
   if (isPrec) {
     normConst = Ldet - k * M_LN_SQRT_2PI;

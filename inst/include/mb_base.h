@@ -226,7 +226,7 @@ List MB_Base<TM>::get_fdf(const NumericVector& P_) {
   
   VectorXd df = tape.Jacobian(P);
 
-  assert(!df.hasNaN());
+  //  assert(!df.hasNaN());
   List res = List::create(Rcpp::Named("val") = f,
 			  Rcpp::Named("grad") = Rcpp::wrap(df)
 			  );

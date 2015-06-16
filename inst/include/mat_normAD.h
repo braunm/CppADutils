@@ -31,8 +31,8 @@ typename TM::Scalar MatNorm_logpdf(const MatrixBase<TY>& Y,
   const int k = Y.rows();
   const int N = Y.cols();
 
-  assert(LV.rows() == N); // row cov has number of columns in Y
-  assert(LU.cols() == k); // col cov has number of rows in Y 
+  //  assert(LV.rows() == N); // row cov has number of columns in Y
+  // assert(LU.cols() == k); // col cov has number of rows in Y 
 
   Scalar c = k * N * M_LN_SQRT_2PI;
 
@@ -86,8 +86,8 @@ typename TM::Scalar MatNorm_logpdf(const MatrixBase<TY>& Y,
   const int k = Y.rows();
   const int N = Y.cols();
 
-  assert(chol_V.rows() == N); // row cov has number of columns in Y
-  assert(chol_U.cols() == k); // col cov has number of rows in Y 
+  //  assert(chol_V.rows() == N); // row cov has number of columns in Y
+  // assert(chol_U.cols() == k); // col cov has number of rows in Y 
 
   Scalar c = k * N * M_LN_SQRT_2PI;
   Scalar detV = chol_V.diagonal().array().log().sum();
