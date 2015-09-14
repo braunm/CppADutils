@@ -5,6 +5,14 @@ LDLT_test <- function(A_) {
     .Call('CppADutils_LDLT_test', PACKAGE = 'CppADutils', A_)
 }
 
+LKJ <- function(Y_, eta_, K) {
+    .Call('CppADutils_LKJ', PACKAGE = 'CppADutils', Y_, eta_, K)
+}
+
+LKJ_unwrap <- function(Y_, K) {
+    .Call('CppADutils_LKJ_unwrap', PACKAGE = 'CppADutils', Y_, K)
+}
+
 MVN_test <- function(X_, mu_, G_, isPrec) {
     .Call('CppADutils_MVN_test', PACKAGE = 'CppADutils', X_, mu_, G_, isPrec)
 }

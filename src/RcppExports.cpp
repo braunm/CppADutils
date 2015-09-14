@@ -17,6 +17,31 @@ BEGIN_RCPP
     return __result;
 END_RCPP
 }
+// LKJ
+double LKJ(NumericVector Y_, double eta_, int K);
+RcppExport SEXP CppADutils_LKJ(SEXP Y_SEXP, SEXP eta_SEXP, SEXP KSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< NumericVector >::type Y_(Y_SEXP);
+    Rcpp::traits::input_parameter< double >::type eta_(eta_SEXP);
+    Rcpp::traits::input_parameter< int >::type K(KSEXP);
+    __result = Rcpp::wrap(LKJ(Y_, eta_, K));
+    return __result;
+END_RCPP
+}
+// LKJ_unwrap
+NumericMatrix LKJ_unwrap(NumericVector Y_, int K);
+RcppExport SEXP CppADutils_LKJ_unwrap(SEXP Y_SEXP, SEXP KSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< NumericVector >::type Y_(Y_SEXP);
+    Rcpp::traits::input_parameter< int >::type K(KSEXP);
+    __result = Rcpp::wrap(LKJ_unwrap(Y_, K));
+    return __result;
+END_RCPP
+}
 // MVN_test
 NumericVector MVN_test(NumericMatrix X_, NumericMatrix mu_, NumericMatrix G_, bool isPrec);
 RcppExport SEXP CppADutils_MVN_test(SEXP X_SEXP, SEXP mu_SEXP, SEXP G_SEXP, SEXP isPrecSEXP) {
