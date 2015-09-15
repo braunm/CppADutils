@@ -5,10 +5,21 @@ LDLT_test <- function(A_) {
     .Call('CppADutils_LDLT_test', PACKAGE = 'CppADutils', A_)
 }
 
+#' @title LKJ pdf
+#' @param Y_ unconstrained vector
+#' @param eta_ parameter >0
+#' @param K dimension integer
+#' @return log pdf
+#' @export
 LKJ <- function(Y_, eta_, K) {
     .Call('CppADutils_LKJ', PACKAGE = 'CppADutils', Y_, eta_, K)
 }
 
+#' @title Unwrap LKJ
+#' @param Y input numeric vector
+#' @param K integer dimension
+#' @return matrix
+#' @export
 LKJ_unwrap <- function(Y_, K) {
     .Call('CppADutils_LKJ_unwrap', PACKAGE = 'CppADutils', Y_, K)
 }
@@ -25,6 +36,7 @@ Sparse_MVN_test <- function(X_, mu_, S_, isPrec) {
 #' @description exp(x)/(1+exp(x))
 #' @param X input numeric vector
 #' @return exp(x)/(1+exp(x))
+#' @export
 invlogit <- function(X) {
     .Call('CppADutils_invlogit', PACKAGE = 'CppADutils', X)
 }
@@ -33,6 +45,7 @@ invlogit <- function(X) {
 #' @description log(1+x)-x, accurate even for small |x|
 #' @param X input numeric vector
 #' @return log(1+x)-x
+#' @export
 log1pmx <- function(X) {
     .Call('CppADutils_log1pmx', PACKAGE = 'CppADutils', X)
 }
@@ -41,6 +54,7 @@ log1pmx <- function(X) {
 #' @description Log inverse logit, accurate even for very negative x
 #' @param X input numeric vector
 #' @return p = log(exp(x)/(1+exp(x)) = x-log(1+exp(x))
+#' @export
 loginvlogit <- function(X) {
     .Call('CppADutils_loginvlogit', PACKAGE = 'CppADutils', X)
 }
@@ -49,6 +63,7 @@ loginvlogit <- function(X) {
 #' @description log(1+exp(x)), accurate even for very large X.
 #' @param X input numeric vector
 #' @return log(1+exp(x))
+#' @export
 log1pexp <- function(X) {
     .Call('CppADutils_log1pexp', PACKAGE = 'CppADutils', X)
 }
@@ -57,6 +72,7 @@ log1pexp <- function(X) {
 #' @description log(gamma(1+x)), accurate even for very small |x|
 #' @param X input numeric vector
 #' @return log(gamma(1+x))
+#' @export
 lgamma1p <- function(X) {
     .Call('CppADutils_lgamma1p', PACKAGE = 'CppADutils', X)
 }
@@ -65,6 +81,7 @@ lgamma1p <- function(X) {
 #' @description log(gamma(exp(x))), accurate even for very small |x|
 #' @param X input numeric vector
 #' @return log(gamma(exp(x)))
+#' @export
 lgammaexp <- function(X) {
     .Call('CppADutils_lgammaexp', PACKAGE = 'CppADutils', X)
 }

@@ -47,6 +47,27 @@ template<typename TY, typename TZ>
   }
 }
 
+template<typename TZ, typename TX>
+  void lkj_Z_to_X(const MatrixBase<TZ>& Z,
+		  const MatrixBase<TX>& X_) {
+
+  MatrixBase<TX>& X = const_cast<MatrixBase<TX>& >(X_);
+  const int K = Z.rows();
+
+
+  Z.setZero();
+  Z(0,0) = 1;
+  for (int i=1; i<K; i++) {
+    X(i,0) = Z(i,0);
+  }
+  for (int j=1; j<K; j++) {
+    X(j,j) = sqrt(1-X.block(j,0,1,j).cwiseAbs2().sum());
+    for (int i=j+1; i<K; i++) {
+      X(i,j) = Z(i,j) * sqrt(1-X.block(i,0,1,j).cwiseAbs2().sum());
+    }
+  }
+}
+
 
 
 template<typename TZ>
@@ -65,7 +86,7 @@ AScalar lkj_logpdf_Z(const MatrixBase<TZ>& Z,
   AScalar logjac = 0;
   for (int j = 0; j<=K-1; j++) {
     for (int i=j+1; i<K; i++) {
-      AScalar t = log1p(-pow(Z(i,j),2)); 
+      AScalar t = log1p(-pow(Z(i,j),2));
       logdet += t;
       logjac += 0.5 * (K-j) * t;
     }
@@ -113,19 +134,36 @@ template<typename TY, typename TW>
   const int K = W.rows();
 
   MatrixXA Z = MatrixXA::Zero(K,K);
+  MatrixXA X = MatrixXA::Zero(K,K);
   lkj_Y_to_Z(Y, Z);
- 
+  lkj_Z_to_X(Z, X); // Cholesky of correlation matrix
+  AScalar jac1=0, jac2=0;
+  /* for (int j=1; j<K; j++) { */
+  /*   jac1 += 0.5 * log1p(-X.block(j,0,1,j) */
 
   W.setZero();
   W(0,0)=1;
   W.bottomLeftCorner(K-1,1) = Z.bottomLeftCorner(K-1,1);
 
   for (int j=1; j<K; j++) {
-    W(j,j) = (1-Z.block(j,0,1,j).array().square()).sqrt().prod();  
+    W(j,j) = (1-Z.block(j,0,1,j).array().square()).sqrt().prod();
     for (int i=j+1; i<K; i++) {
-      W(i,j) = W(i,j-1)*Z(i,j)*sqrt(1-pow(Z(i,j-1),2));
+      W(i,j) = Z(i,j)*(1-Z.block(i,0,1,j).array().square()).sqrt().prod();
     }
-  }  
+  }
+
+
+  /* Rcout << "\nW:\n"; */
+  /* for (int i=0; i<K; i++) { */
+  /*   for (int j=0; j<K; j++) { */
+  /*     Rcout << W(i,j) << "\t"; */
+  /*   } */
+  /*   Rcout << "\n"; */
+  /* } */
+  
+
+
+  
 }
 
 

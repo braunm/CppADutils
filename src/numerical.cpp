@@ -7,6 +7,7 @@ using Rcpp::NumericMatrix;
 //' @description exp(x)/(1+exp(x))
 //' @param X input numeric vector
 //' @return exp(x)/(1+exp(x))
+//' @export
 //[[Rcpp::export]]
 Rcpp::NumericVector invlogit(const NumericVector& X) {
 
@@ -22,6 +23,7 @@ Rcpp::NumericVector invlogit(const NumericVector& X) {
 //' @description log(1+x)-x, accurate even for small |x|
 //' @param X input numeric vector
 //' @return log(1+x)-x
+//' @export
 //[[Rcpp::export]]
 Rcpp::NumericVector log1pmx(const NumericVector& X) {
 
@@ -37,6 +39,7 @@ Rcpp::NumericVector log1pmx(const NumericVector& X) {
 //' @description Log inverse logit, accurate even for very negative x
 //' @param X input numeric vector
 //' @return p = log(exp(x)/(1+exp(x)) = x-log(1+exp(x))
+//' @export
 //[[Rcpp::export]]
 Rcpp::NumericVector loginvlogit(const NumericVector& X) {
 
@@ -52,6 +55,7 @@ Rcpp::NumericVector loginvlogit(const NumericVector& X) {
 //' @description log(1+exp(x)), accurate even for very large X.
 //' @param X input numeric vector
 //' @return log(1+exp(x))
+//' @export
 //[[Rcpp::export]]
 Rcpp::NumericVector log1pexp(const NumericVector& X) {
 
@@ -67,6 +71,7 @@ Rcpp::NumericVector log1pexp(const NumericVector& X) {
 //' @description log(gamma(1+x)), accurate even for very small |x|
 //' @param X input numeric vector
 //' @return log(gamma(1+x))
+//' @export
 //[[Rcpp::export]]
 Rcpp::NumericVector lgamma1p(const NumericVector& X) {
   int k = X.size();
@@ -82,6 +87,7 @@ Rcpp::NumericVector lgamma1p(const NumericVector& X) {
 //' @description log(gamma(exp(x))), accurate even for very small |x|
 //' @param X input numeric vector
 //' @return log(gamma(exp(x)))
+//' @export
 //[[Rcpp::export]]
 Rcpp::NumericVector lgammaexp(const NumericVector& X) {
   int k = X.size();

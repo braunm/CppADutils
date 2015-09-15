@@ -29,7 +29,12 @@ typedef Eigen::Matrix<AScalar, Dynamic, Dynamic> MatrixXA;
 typedef Eigen::Matrix<AScalar, Dynamic, 1> VectorXA;
 typedef Eigen::SparseMatrix<AScalar> SparseMatrixXA;
 
-
+//' @title LKJ pdf
+//' @param Y_ unconstrained vector
+//' @param eta_ parameter >0
+//' @param K dimension integer
+//' @return log pdf
+//' @export
 //[[Rcpp::export]]
 double LKJ(NumericVector Y_, double eta_, int K) {
 
@@ -40,6 +45,12 @@ double LKJ(NumericVector Y_, double eta_, int K) {
   return(Value(res));
 }
 
+
+//' @title Unwrap LKJ
+//' @param Y input numeric vector
+//' @param K integer dimension
+//' @return matrix
+//' @export
 //[[Rcpp::export]]
 NumericMatrix LKJ_unwrap(NumericVector Y_, int K) {
 
