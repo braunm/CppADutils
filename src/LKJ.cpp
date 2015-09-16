@@ -52,18 +52,23 @@ double LKJ(NumericVector Y_, double eta_, int K) {
 //' @return matrix
 //' @export
 //[[Rcpp::export]]
-NumericMatrix LKJ_unwrap(NumericVector Y_, int K) {
+List LKJ_unwrap(NumericVector Y_, int K) {
 
 
   VectorXA Y = MatrixXd::Map(Y_.begin(), K, K).cast<AScalar>();
   MatrixXA W(K,K);
-  NumericMatrix res(K,K);
-  lkj_unwrap(Y, W);
+  NumericMatrix M(K,K);
+  AScalar log_jac = lkj_unwrap(Y, W);
   for (int j=0; j<K; j++) {
     for (int i=0; i<K; i++) {
-      res(i,j) = Value(W(i,j));
+      M(i,j) = Value(W(i,j));
     }
   }
+
+  List res = List::create(
+			  Named("chol_corr")=wrap(M),
+			  Named("log_jac")=wrap(Value(log_jac))
+			  );
 
   return(wrap(res));
 }

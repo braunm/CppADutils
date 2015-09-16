@@ -31,7 +31,7 @@ BEGIN_RCPP
 END_RCPP
 }
 // LKJ_unwrap
-NumericMatrix LKJ_unwrap(NumericVector Y_, int K);
+List LKJ_unwrap(NumericVector Y_, int K);
 RcppExport SEXP CppADutils_LKJ_unwrap(SEXP Y_SEXP, SEXP KSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;

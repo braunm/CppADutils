@@ -64,7 +64,7 @@ void MVN_logpdf(const MatrixBase<TY>& Y,
     chol_G.template triangularView<Lower>().solveInPlace(Z);
   }
 
-  MatrixXA tmp = normConst - (0.5*Z.array()*Z.array()).colwise().sum();
+  VectorXA tmp = normConst - (0.5*Z.array()*Z.array()).colwise().sum();
   out = tmp;
 
 
