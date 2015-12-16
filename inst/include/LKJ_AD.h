@@ -42,34 +42,58 @@ template<typename TY, typename TW>
   
   const int K = W.rows();
   const int Kch2 = R::choose(K,2);
-  VectorXA Z(Kch2);
+  MatrixXA Z(K,K);
   AScalar logjac = 0;
-  
-  for (int i=0; i<Kch2; i++) {
-    Z(i) = tanh(Y(i));
-    //  logjac += log1p(-Z(i)*Z(i));
-    logjac += -2*log(cosh(Y(i)));
-  }
-  
+
+  Z.setZero();
   W.setZero();
   W(0,0)=1;
-  int idx=0;
-  for (int i=1; i<K; ++i) {
-    W(i,0) = Z(idx++);
-    AScalar sum_sqs = W(i,0)*W(i,0);
-    for (int j=1; j<i; ++j) {
-      logjac += 0.5*log1p(-sum_sqs);
-      W(i,j) = Z(idx++) * sqrt(1-sum_sqs);
+  int idx;
+  for (int i=1; i<K; i++) {
+    AScalar sum_sqs = 0;
+    for (int j=0; j<i; j++) {
+      idx = K*j+i-(j+1)*(j+2)/2;
+      Z(i,j) = tanh(Y(idx));
+      W(i,j) = Z(i,j)*sqrt(1-sum_sqs);
       sum_sqs += W(i,j)*W(i,j);
     }
     W(i,i) = sqrt(1-sum_sqs);
   }
+
+  for (int j=1; j<=(K-1); j++) {
+    for (int i=j+1; i<=K; i++) {
+      logjac += (K-j-1)*log(1-pow(Z(i-1,j-1),2))/2;
+      logjac += log(1-pow(Z(i-1,j-1),2));
+    }
+  }
+
   
   return(logjac);
 
 }
 
 
+template<typename TY>
+AScalar lkj_chol_logpdf(const MatrixBase<TY>& L,
+			const AScalar& eta) {
+
+
+  // Log pdf of LKJ distribution, after passing in a Cholesky
+  // matrix.
+
+  int K = L.rows();
+  VectorXA v(K-1);
+  AScalar c = lkj_const(eta, K);
+  VectorXA log_diags = L.diagonal().tail(K-1).array().log();
+ 
+  for (int i=0; i<K-1; i++) {
+    v(i) = (K-i+2*eta-4)*log_diags(i);
+  }
+    
+  AScalar res = c + v.sum();
+  return(res);
+
+}
 
 template<typename TY>
 AScalar lkj_logpdf(const MatrixBase<TY>& Y,
@@ -81,19 +105,15 @@ AScalar lkj_logpdf(const MatrixBase<TY>& Y,
   
   MatrixXA L = MatrixXA::Zero(K,K);
   AScalar logjac = lkj_unwrap(Y, L);
-  VectorXA v(K-1);
-
-
-  AScalar c = lkj_const(eta, K);
-  for (int i=0; i<K-1; i++) {
-    //   v(i) = (K-i+2*eta-4)*log(L(i+1,i+1));
-    v(i) += (eta-1)*2*log(L(i+1,i+1));
-  }
+  //  AScalar c = lkj_const(eta, K);
+  AScalar lkj_chol = lkj_chol_logpdf(L, eta);
     
-  AScalar res = c + v.sum() + logjac;
+  AScalar res = lkj_chol + logjac;
   return(res);
 
 }
+
+
 
 
 

@@ -15,6 +15,25 @@ LKJ <- function(Y_, eta_, K) {
     .Call('CppADutils_LKJ', PACKAGE = 'CppADutils', Y_, eta_, K)
 }
 
+#' @title LKJ pdf
+#' @param Y_ unconstrained vector
+#' @param eta_ parameter >0
+#' @param K dimension integer
+#' @return log pdf
+#' @export
+LKJ_chol <- function(L_, eta_) {
+    .Call('CppADutils_LKJ_chol', PACKAGE = 'CppADutils', L_, eta_)
+}
+
+#' @title LKJ constant term in pdf
+#' @param eta_ parameter >0
+#' @param K dimension integer
+#' @return log pdf
+#' @export
+LKJ_const <- function(eta, K) {
+    .Call('CppADutils_LKJ_const', PACKAGE = 'CppADutils', eta, K)
+}
+
 #' @title Unwrap LKJ
 #' @param Y input numeric vector
 #' @param K integer dimension
@@ -22,6 +41,43 @@ LKJ <- function(Y_, eta_, K) {
 #' @export
 LKJ_unwrap <- function(Y_, K) {
     .Call('CppADutils_LKJ_unwrap', PACKAGE = 'CppADutils', Y_, K)
+}
+
+#' @ LKJ chol stan
+#' @param L Cholesky
+#' @param eta parameter
+#' @return lkj pdf
+#' @export
+LKJ_chol_stan <- function(L_, eta) {
+    .Call('CppADutils_LKJ_chol_stan', PACKAGE = 'CppADutils', L_, eta)
+}
+
+#' @ LKJ stan
+#' @param L correlation matrix
+#' @param eta parameter
+#' @return lkj pdf
+#' @export
+LKJ_stan <- function(S_, eta) {
+    .Call('CppADutils_LKJ_stan', PACKAGE = 'CppADutils', S_, eta)
+}
+
+#' @ LKJ stan constant
+#' @param eta parameter
+#' @param K integer
+#' @return lkj constant
+#' @export
+LKJ_stan_const <- function(eta, K) {
+    .Call('CppADutils_LKJ_stan_const', PACKAGE = 'CppADutils', eta, K)
+}
+
+#' @export
+corr_matrix <- function(X_, K) {
+    .Call('CppADutils_corr_matrix', PACKAGE = 'CppADutils', X_, K)
+}
+
+#' @export
+chol_corr_matrix <- function(X_, K) {
+    .Call('CppADutils_chol_corr_matrix', PACKAGE = 'CppADutils', X_, K)
 }
 
 MVN_test <- function(X_, mu_, G_, isPrec) {
