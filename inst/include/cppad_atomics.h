@@ -1,6 +1,10 @@
 #ifndef __CPPADUTILS_ATOMICS
 #define __CPPADUTILS_ATOMICS
 
+#ifndef CPPAD_USE_CPLUSPLUS_2011
+#define CPPAD_USE_CPLUSPLUS_2011
+#endif
+
 #include <cppad_atomic/expm1_at.h>
 #include <cppad_atomic/incgamma_at.h>
 #include <cppad_atomic/incbeta_at.h>

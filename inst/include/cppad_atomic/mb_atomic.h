@@ -27,7 +27,8 @@ class mb_atomic : public CppAD::atomic_base<double> {
   std::shared_ptr<TF> func;
       
  mb_atomic(const std::string& name) :
-  CppAD::atomic_base<double>(name) {
+  //  CppAD::atomic_base<double>(name) {
+  CppAD::atomic_base<double>(name, atomic_base<double>::set_sparsity_enum) {
     func = std::make_shared<TF>();
   }
 

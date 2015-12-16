@@ -17,28 +17,16 @@ BEGIN_RCPP
     return __result;
 END_RCPP
 }
-// LKJ
-double LKJ(NumericVector Y_, double eta_, int K);
-RcppExport SEXP CppADutils_LKJ(SEXP Y_SEXP, SEXP eta_SEXP, SEXP KSEXP) {
+// LKJ_test
+List LKJ_test(NumericVector Y_, double eta_, int K);
+RcppExport SEXP CppADutils_LKJ_test(SEXP Y_SEXP, SEXP eta_SEXP, SEXP KSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
     Rcpp::RNGScope __rngScope;
     Rcpp::traits::input_parameter< NumericVector >::type Y_(Y_SEXP);
     Rcpp::traits::input_parameter< double >::type eta_(eta_SEXP);
     Rcpp::traits::input_parameter< int >::type K(KSEXP);
-    __result = Rcpp::wrap(LKJ(Y_, eta_, K));
-    return __result;
-END_RCPP
-}
-// LKJ_chol
-double LKJ_chol(NumericMatrix L_, double eta_);
-RcppExport SEXP CppADutils_LKJ_chol(SEXP L_SEXP, SEXP eta_SEXP) {
-BEGIN_RCPP
-    Rcpp::RObject __result;
-    Rcpp::RNGScope __rngScope;
-    Rcpp::traits::input_parameter< NumericMatrix >::type L_(L_SEXP);
-    Rcpp::traits::input_parameter< double >::type eta_(eta_SEXP);
-    __result = Rcpp::wrap(LKJ_chol(L_, eta_));
+    __result = Rcpp::wrap(LKJ_test(Y_, eta_, K));
     return __result;
 END_RCPP
 }
@@ -51,78 +39,6 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< double >::type eta(etaSEXP);
     Rcpp::traits::input_parameter< int >::type K(KSEXP);
     __result = Rcpp::wrap(LKJ_const(eta, K));
-    return __result;
-END_RCPP
-}
-// LKJ_unwrap
-List LKJ_unwrap(NumericVector Y_, int K);
-RcppExport SEXP CppADutils_LKJ_unwrap(SEXP Y_SEXP, SEXP KSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject __result;
-    Rcpp::RNGScope __rngScope;
-    Rcpp::traits::input_parameter< NumericVector >::type Y_(Y_SEXP);
-    Rcpp::traits::input_parameter< int >::type K(KSEXP);
-    __result = Rcpp::wrap(LKJ_unwrap(Y_, K));
-    return __result;
-END_RCPP
-}
-// LKJ_chol_stan
-double LKJ_chol_stan(NumericMatrix L_, double eta);
-RcppExport SEXP CppADutils_LKJ_chol_stan(SEXP L_SEXP, SEXP etaSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject __result;
-    Rcpp::RNGScope __rngScope;
-    Rcpp::traits::input_parameter< NumericMatrix >::type L_(L_SEXP);
-    Rcpp::traits::input_parameter< double >::type eta(etaSEXP);
-    __result = Rcpp::wrap(LKJ_chol_stan(L_, eta));
-    return __result;
-END_RCPP
-}
-// LKJ_stan
-double LKJ_stan(NumericMatrix S_, double eta);
-RcppExport SEXP CppADutils_LKJ_stan(SEXP S_SEXP, SEXP etaSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject __result;
-    Rcpp::RNGScope __rngScope;
-    Rcpp::traits::input_parameter< NumericMatrix >::type S_(S_SEXP);
-    Rcpp::traits::input_parameter< double >::type eta(etaSEXP);
-    __result = Rcpp::wrap(LKJ_stan(S_, eta));
-    return __result;
-END_RCPP
-}
-// LKJ_stan_const
-double LKJ_stan_const(double eta, int K);
-RcppExport SEXP CppADutils_LKJ_stan_const(SEXP etaSEXP, SEXP KSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject __result;
-    Rcpp::RNGScope __rngScope;
-    Rcpp::traits::input_parameter< double >::type eta(etaSEXP);
-    Rcpp::traits::input_parameter< int >::type K(KSEXP);
-    __result = Rcpp::wrap(LKJ_stan_const(eta, K));
-    return __result;
-END_RCPP
-}
-// corr_matrix
-List corr_matrix(NumericVector X_, int K);
-RcppExport SEXP CppADutils_corr_matrix(SEXP X_SEXP, SEXP KSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject __result;
-    Rcpp::RNGScope __rngScope;
-    Rcpp::traits::input_parameter< NumericVector >::type X_(X_SEXP);
-    Rcpp::traits::input_parameter< int >::type K(KSEXP);
-    __result = Rcpp::wrap(corr_matrix(X_, K));
-    return __result;
-END_RCPP
-}
-// chol_corr_matrix
-List chol_corr_matrix(NumericVector X_, int K);
-RcppExport SEXP CppADutils_chol_corr_matrix(SEXP X_SEXP, SEXP KSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject __result;
-    Rcpp::RNGScope __rngScope;
-    Rcpp::traits::input_parameter< NumericVector >::type X_(X_SEXP);
-    Rcpp::traits::input_parameter< int >::type K(KSEXP);
-    __result = Rcpp::wrap(chol_corr_matrix(X_, K));
     return __result;
 END_RCPP
 }

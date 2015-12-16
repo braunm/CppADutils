@@ -11,7 +11,7 @@ Depends:
     Matrix (>= 1.1.4)
 License: file LICENSE
 LazyData: true
-LinkingTo: Rcpp, RcppEigen, StanHeaders, BH
+LinkingTo: Rcpp, RcppEigen
 RcppModules: adtest
 Roxygen: list(wrap=TRUE)
 Suggests:

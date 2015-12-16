@@ -1,12 +1,21 @@
-rm(list=ls())
+## Test functions for LKJ prior
 
-library(rstan)
-library(plyr)
-library(dplyr)
-set.seed(123)
 
-## R functions for LKJ
+#' @title LKJ
+#' @param Y vector of unconstrained parameters
+#' @param eta LKJ parameter
+#' @param K dimension (integer)
+#' @return log LKJ pdf of Cholesky decomp, given unconstrained vector
+lkj_R <- function(Y, eta, K) {
+    W <- lkj_unwrap_R(Y,K)
+    L <- W$L
+    logjac <- W$logjac
+    lkj_chol <- lkj_chol_logpdf_R(L, eta)
+    res <- lkj_chol + logjac
+    return(res)
+}
 
+#' @rdname LKJ
 lkj_const_R <- function(eta, K) {
     res <- 0
     s <- 0
@@ -20,6 +29,7 @@ lkj_const_R <- function(eta, K) {
     return(res)
 }
 
+#' @rdname LKJ
 lkj_unwrap_R <- function(Y, K) {
 
     Z <- matrix(0,K,K)
@@ -42,8 +52,11 @@ lkj_unwrap_R <- function(Y, K) {
     return(res)
 }
 
+#' @rdname LKJ
+#' @param L lower triangular Cholesky decomposition
+#' @return log LKJ pdf of Cholesky decomp, given unconstrained vector
 lkj_chol_logpdf_R <- function(L, eta) {
-    k <- NROW(L)
+    K <- NROW(L)
     q <- (K-4+2*eta)-seq(0,K-2)
     c <- lkj_const_R(eta, K)
     log_diags <- log(diag(L)[2:K])
@@ -51,39 +64,5 @@ lkj_chol_logpdf_R <- function(L, eta) {
     res <- c + sum(v)
     return(res)
 }
-
-lkj_R <- function(Y, eta, K) {
-    W <- lkj_unwrap_R(Y,K)
-    L <- W$L
-    logjac <- W$logjac
-    lkj_chol <- lkj_chol_logpdf_R(L, eta)
-    res <- lkj_chol + logjac
-    return(res)
-}
-
-
-
-
-K <- 5
-eta <- 1
-
-Y <- rnorm(choose(K,2))
-
-
-
-mine <- LKJ_test(Y, eta, K)
-LM <- mine$L
-jM <- mine$logjac
-
-
-cn <- LKJ_const(eta, K)
-cn_R <- lkj_const(eta, K)
-
-pdf1 <- mine$logpdf
-pdf3 <- lkj_R(Y, eta, K)
-
-print(pdf1)
-print(pdf2)
-print(pdf3)
 
 
