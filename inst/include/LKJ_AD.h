@@ -89,22 +89,6 @@ AScalar lkj_chol_logpdf(const MatrixBase<TY>& L,
 
 }
 
-template<typename TY>
-AScalar lkj_logpdf(const MatrixBase<TY>& Y,
-		   const AScalar& eta,
-		   const int& K) {
-
-  // Log pdf of cholesky LKJ distribution, after passing in an unconstrained
-  // vector.  All Jacobians are accounted for here.
-  
-  MatrixXA L = MatrixXA::Zero(K,K);
-  AScalar logjac = lkj_unwrap(Y, L);
-  AScalar lkj_chol = lkj_chol_logpdf(L, eta);
-    
-  AScalar res = lkj_chol + logjac;
-  return(res);
-
-}
 
 #endif
 

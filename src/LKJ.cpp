@@ -32,38 +32,43 @@ typedef Eigen::Matrix<AScalar, Dynamic, Dynamic> MatrixXA;
 typedef Eigen::Matrix<AScalar, Dynamic, 1> VectorXA;
 typedef Eigen::SparseMatrix<AScalar> SparseMatrixXA;
 
-//' @title LKJ pdf
+
+//' @title LKJ test
 //' @param Y_ unconstrained vector
 //' @param eta_ parameter >0
 //' @param K dimension integer
-//' @return log pdf
+//' @return List
 //' @export
 //[[Rcpp::export]]
-double LKJ(NumericVector Y_, double eta_, int K) {
+List LKJ_test(NumericVector Y_, double eta_, int K) {
 
   size_t v = Y_.size();
   VectorXA Y = VectorXd::Map(Y_.begin(),v).cast<AScalar>();
   AScalar eta = eta_;
-  AScalar res = lkj_logpdf(Y, eta, K);
-  return(Value(res));
+  MatrixXA L = MatrixXA::Zero(K,K);
+  AScalar logjac = lkj_unwrap(Y, L);
+  AScalar lkj_chol = lkj_chol_logpdf(L, eta);
+  AScalar logpdf = lkj_chol + logjac;
+  NumericMatrix M(K,K);
+  for (int j=0; j<K; j++) {
+    for (int i=0; i<K; i++) {
+      if (i<j) {
+	M(i,j) = 0;
+      } else {
+	M(i,j) = Value(L(i,j));
+      }
+    }
+  }
+
+  List res = List::create(
+			  Named("L")=wrap(M),
+			  Named("logpdf")=wrap(Value(logpdf)),
+			  Named("logjac")=wrap(Value(logjac))
+			  );
+  
+  return(wrap(res));
 }
 
-
-//' @title LKJ pdf
-//' @param Y_ unconstrained vector
-//' @param eta_ parameter >0
-//' @param K dimension integer
-//' @return log pdf
-//' @export
-//[[Rcpp::export]]
-double LKJ_chol(NumericMatrix L_, double eta_) {
-
-  size_t K = L_.rows();
-  MatrixXA L = MatrixXd::Map(L_.begin(),K,K).cast<AScalar>();
-  AScalar eta = eta_;
-  AScalar res = lkj_chol_logpdf(L, eta);
-  return(Value(res));
-}
 
 
 
@@ -81,34 +86,7 @@ double LKJ_const(double eta, int K) {
 
 
 
-//' @title Unwrap LKJ
-//' @param Y input numeric vector
-//' @param K integer dimension
-//' @return matrix
-//' @export
-//[[Rcpp::export]]
-List LKJ_unwrap(NumericVector Y_, int K) {
-
-  const int Kch2 = R::choose(K,2);
-  VectorXA Y = VectorXd::Map(Y_.begin(), Kch2).cast<AScalar>();
-  MatrixXA W(K,K);
-  NumericMatrix M(K,K);
-  AScalar log_jac = lkj_unwrap(Y, W);
-  for (int j=0; j<K; j++) {
-    for (int i=0; i<K; i++) {
-      M(i,j) = Value(W(i,j));
-    }
-  }
-
-  List res = List::create(
-			  Named("chol_corr")=wrap(M),
-			  Named("log_jac")=wrap(Value(log_jac))
-			  );
-
-  return(wrap(res));
-}
-
-//' @ LKJ chol stan
+//' @title LKJ chol stan
 //' @param L Cholesky
 //' @param eta parameter
 //' @return lkj pdf
@@ -123,7 +101,7 @@ double LKJ_chol_stan(NumericMatrix L_, double eta) {
 }
 
 
-//' @ LKJ stan
+//' @title LKJ stan
 //' @param L correlation matrix
 //' @param eta parameter
 //' @return lkj pdf
@@ -137,7 +115,7 @@ double LKJ_stan(NumericMatrix S_, double eta) {
   return(res);
 }
 
-//' @ LKJ stan constant
+//' @title LKJ stan constant
 //' @param eta parameter
 //' @param K integer
 //' @return lkj constant
