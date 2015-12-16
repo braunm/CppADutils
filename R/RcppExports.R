@@ -24,6 +24,28 @@ LKJ_const <- function(eta, K) {
     .Call('CppADutils_LKJ_const', PACKAGE = 'CppADutils', eta, K)
 }
 
+#' @title MatNorm_test
+#' @param X_ numeric matrix (k x N)
+#' @param M_ numeric matrix (k x N)
+#' @param chol_U_ k x k lower triangular matrix of lower triangle of chol(U)
+#' @param chol_V_ N x N lower triangular matrix of lower triangle of chol(V)
+#' @param isPrec TRUE if U and V are precision matrices.  FALSE is U and V are covariance matrices
+#' @return log pdf of matrix normal distribution
+MatNorm_test <- function(X_, M_, chol_U_, chol_V_, isPrec) {
+    .Call('CppADutils_MatNorm_test', PACKAGE = 'CppADutils', X_, M_, chol_U_, chol_V_, isPrec)
+}
+
+#' @rdname MatNorm_test
+#' @param X_ numeric matrix (k x N)
+#' @param M_ numeric matrix (k x N)
+#' @param U_ k x k dgCMatrix (full, not Cholesky)
+#' @param V_ N x N dgCMatrix (full, not Cholesky)
+#' @param isPrec TRUE if U and V are precision matrices.  FALSE is U and V are covariance matrices
+#' @return log pdf of matrix normal distribution
+MatNorm_sparse_test <- function(X_, M_, U_, V_, isPrec) {
+    .Call('CppADutils_MatNorm_sparse_test', PACKAGE = 'CppADutils', X_, M_, U_, V_, isPrec)
+}
+
 MVN_test <- function(X_, mu_, G_, isPrec) {
     .Call('CppADutils_MVN_test', PACKAGE = 'CppADutils', X_, mu_, G_, isPrec)
 }
