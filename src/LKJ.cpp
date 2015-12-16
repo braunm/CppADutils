@@ -165,10 +165,7 @@ List corr_matrix(NumericVector X_,
 			  );
   
   return(wrap(res));
-
-
 }
-
 
 //' @export
 //[[Rcpp::export]]

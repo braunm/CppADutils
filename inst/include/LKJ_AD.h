@@ -34,40 +34,34 @@ AScalar lkj_const(const AScalar& eta,
 
 
 // Converts unconstrained vector to Cholesky of correlation matrix
+
 template<typename TY, typename TW>
   AScalar lkj_unwrap(const MatrixBase<TY>& Y,
 		     const MatrixBase<TW>& W_) {
 
+  // W is lower triangular, filled in by rows
+  
   MatrixBase<TW>& W = const_cast<MatrixBase<TW>& >(W_);
   
   const int K = W.rows();
-  const int Kch2 = R::choose(K,2);
   MatrixXA Z(K,K);
   AScalar logjac = 0;
 
   Z.setZero();
   W.setZero();
   W(0,0)=1;
-  int idx;
+  int idx=0;
   for (int i=1; i<K; i++) {
     AScalar sum_sqs = 0;
-    for (int j=0; j<i; j++) {
-      idx = K*j+i-(j+1)*(j+2)/2;
-      Z(i,j) = tanh(Y(idx));
+    for (int j=0; j<i; j++) { 
+      Z(i,j) = tanh(Y(idx++));
+      logjac += log(1-pow(Z(i,j),2));
       W(i,j) = Z(i,j)*sqrt(1-sum_sqs);
+      logjac += 0.5 * log(1-sum_sqs);
       sum_sqs += W(i,j)*W(i,j);
     }
     W(i,i) = sqrt(1-sum_sqs);
   }
-
-  for (int j=1; j<=(K-1); j++) {
-    for (int i=j+1; i<=K; i++) {
-      logjac += (K-j-1)*log(1-pow(Z(i-1,j-1),2))/2;
-      logjac += log(1-pow(Z(i-1,j-1),2));
-    }
-  }
-
-  
   return(logjac);
 
 }
@@ -100,24 +94,17 @@ AScalar lkj_logpdf(const MatrixBase<TY>& Y,
 		   const AScalar& eta,
 		   const int& K) {
 
-  // Log pdf of LKJ distribution, after passing in an unconstrained
+  // Log pdf of cholesky LKJ distribution, after passing in an unconstrained
   // vector.  All Jacobians are accounted for here.
   
   MatrixXA L = MatrixXA::Zero(K,K);
   AScalar logjac = lkj_unwrap(Y, L);
-  //  AScalar c = lkj_const(eta, K);
   AScalar lkj_chol = lkj_chol_logpdf(L, eta);
     
   AScalar res = lkj_chol + logjac;
   return(res);
 
 }
-
-
-
-
-
-
 
 #endif
 
