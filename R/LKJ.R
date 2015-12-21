@@ -1,11 +1,13 @@
 ## Test functions for LKJ prior
+## Also used for wrapping and unwrapping in R code
 
-
-#' @title LKJ
+#' @name LKJ
+#' @title Functions for testing LKJ prior
 #' @param Y vector of unconstrained parameters
 #' @param eta LKJ parameter
 #' @param K dimension (integer)
-#' @return log LKJ pdf of Cholesky decomp, given unconstrained vector
+#' @return log LKJ pdf of unconstrained vector
+#' @export
 lkj_R <- function(Y, eta, K) {
     W <- lkj_unwrap_R(Y,K)
     L <- W$L
@@ -16,6 +18,7 @@ lkj_R <- function(Y, eta, K) {
 }
 
 #' @rdname LKJ
+#' @export
 lkj_const_R <- function(eta, K) {
     res <- 0
     s <- 0
@@ -30,8 +33,8 @@ lkj_const_R <- function(eta, K) {
 }
 
 #' @rdname LKJ
+#' @export
 lkj_unwrap_R <- function(Y, K) {
-
     Z <- matrix(0,K,K)
     W <- matrix(0,K,K)
     idx <- 1
@@ -55,6 +58,7 @@ lkj_unwrap_R <- function(Y, K) {
 #' @rdname LKJ
 #' @param L lower triangular Cholesky decomposition
 #' @return log LKJ pdf of Cholesky decomp, given unconstrained vector
+#' @export
 lkj_chol_logpdf_R <- function(L, eta) {
     K <- NROW(L)
     q <- (K-4+2*eta)-seq(0,K-2)

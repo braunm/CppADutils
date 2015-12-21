@@ -3,9 +3,7 @@
 
 #include <tests/test_functors.h>
 
-#ifndef CPPAD_USE_CPLUSPLUS_2011
-#define CPPAD_USE_CPLUSPLUS_2011
-#endif
+#define CPPAD_USE_CPLUSPLUS_2011 1
 
 
 //' @name CppADutils-tests

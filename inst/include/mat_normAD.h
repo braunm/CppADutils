@@ -1,6 +1,7 @@
 #ifndef __MATNORM__AD
 #define __MATNORM__AD
 
+#define CPPAD_USE_CPLUSPLUS_2011 1
 
 #include <iostream>
 using Eigen::MatrixBase;
@@ -19,8 +20,6 @@ template<typename TM>
 					const bool isPrec) {
 
   typedef typename TM::Scalar Scalar;
-  typedef Matrix<Scalar, Dynamic, Dynamic> MatrixXS;
-
 
   // log constant of matrix normal.  U and V must be of same type
 
@@ -138,10 +137,6 @@ typename TY::Scalar MatNorm_logpdf(const MatrixBase<TY>& Y,
 
   // chol_U is Cholesky of row cov/prec
     // chol_col_G is Cholesky of col cov/prec
-
-
-  const int k = Y.rows();
-  const int N = Y.cols();
 
   Scalar c = MatNorm_log_const(LU, LV, isPrec);
   

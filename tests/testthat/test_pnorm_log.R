@@ -75,6 +75,6 @@ test_that("pnorm",{
     expect_equivalent(drop0(c_hess_dense), drop0(R_hess,1e-8))
     expect_equal(c_hess_dense, c_hess_sp)
     expect_equal(c_hess_spLT, tril(drop0(c_hess_sp, 1e-8)),tolerance=1e-5)
-    expect_equal(c_hess_spLT, R_hess_spLT, tolerance=1e-5)
+    expect_equal(c_hess_spLT, R_hess_spLT, tolerance=5e-5)
 })
 
