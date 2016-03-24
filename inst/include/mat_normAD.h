@@ -1,8 +1,6 @@
 #ifndef __MATNORM__AD
 #define __MATNORM__AD
 
-#define CPPAD_USE_CPLUSPLUS_2011 1
-
 #include <iostream>
 using Eigen::MatrixBase;
 using Eigen::Lower;
@@ -54,12 +52,13 @@ template<typename TM>
 
   Scalar LD_U = 0.;
   for (int i=0; i<k; i++) {
-    LD_U += log(chol_U.template derived().coeff(i,i));
+    LD_U += log(chol_U.derived().coeff(i,i));
   }
 
   Scalar LD_V = 0.;
   for (int i=0; i<N; i++) {
-    LD_V += log(chol_V.template derived().coeff(i,i));
+    //    LD_V += log(chol_V.template derived().coeff(i,i));
+    LD_V += log(chol_V.derived().coeff(i,i));
   }
   
 

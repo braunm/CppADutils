@@ -108,7 +108,8 @@ void MVN_logpdf(const MatrixBase<TY>& Y,
 
   AScalar Ldet = 0.;
   for (int i=0; i<k; i++) {
-    Ldet += log(L.template derived().coeff(i,i));
+    //    Ldet += log(L.template derived().coeff(i,i));
+    Ldet += log(L.derived().coeff(i,i));
   }
 
   Z = P*Z;
