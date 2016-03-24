@@ -3,7 +3,7 @@
 
 #include <utilfuncs.h>
 
-#define CPPAD_USE_CPLUSPLUS_2011 1
+//#define CPPAD_USE_CPLUSPLUS_2011 1
 
 inline AScalar dnorm_log(const AScalar&, const AScalar&, const AScalar&);
 inline AScalar dnormTrunc0_log(const AScalar&, const AScalar&, const AScalar&);

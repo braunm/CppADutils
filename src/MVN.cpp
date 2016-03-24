@@ -31,6 +31,13 @@ typedef Eigen::Matrix<AScalar, Dynamic, Dynamic> MatrixXA;
 typedef Eigen::Matrix<AScalar, Dynamic, 1> VectorXA;
 typedef Eigen::SparseMatrix<AScalar> SparseMatrixXA;
 
+//' @title MVN test
+//' @param X_ matrix
+//' @param mu_ matrix
+//' @param G_ full covariance or precision matrix
+//' @param isPrec covariance or precision matrix?
+//' @return Numeric vector
+//' @export
 //[[Rcpp::export]]
 NumericVector MVN_test(NumericMatrix X_, NumericMatrix mu_,
 		       NumericMatrix G_, bool isPrec){
