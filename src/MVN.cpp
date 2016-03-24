@@ -2,7 +2,7 @@
 #define EIGEN_MATRIX_PLUGIN <eigen_plugin.h>
 #define EIGEN_SPARSEMATRIXBASE_PLUGIN <eigen_sparse_plugin.h>
 
-#define CPPAD_USE_CPLUSPLUS_2011 1
+// #define CPPAD_USE_CPLUSPLUS_2011 1
 
 #include <RcppEigen.h>
 #include <Eigen/Eigen>

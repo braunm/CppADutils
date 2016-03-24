@@ -15,6 +15,7 @@ using Eigen::MatrixXd;
 using Eigen::VectorXd;
 
 using CppAD::vector;
+using CppAD::atomic_base;
 
 typedef CppAD::AD<double> AScalar;
 typedef Eigen::Matrix<AScalar, Dynamic, 1> VectorXA;

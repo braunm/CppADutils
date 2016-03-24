@@ -3,8 +3,6 @@
 
 #include <tests/test_functors.h>
 
-#define CPPAD_USE_CPLUSPLUS_2011 1
-
 
 //' @name CppADutils-tests
 //' @title tests

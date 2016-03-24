@@ -1,3 +1,2 @@
-##PKG_CPPFLAGS=-I/opt/cppad/include  -I../inst/include/ -UNDEBUG
-PKG_CPPFLAGS=-I/opt/cppad/include  -I../inst/include/  -DNDEBUG -Wno-unused-variable
+PKG_CPPFLAGS=-I$(CPPAD_DIR)/include  -I../inst/include/ -DNDEBUG -Wno-unused-variable
 
