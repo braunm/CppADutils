@@ -6,6 +6,19 @@
 
 using namespace Rcpp;
 
+// dgamma_test
+NumericVector dgamma_test(NumericVector X_, NumericVector R_, NumericVector A_);
+RcppExport SEXP CppADutils_dgamma_test(SEXP X_SEXP, SEXP R_SEXP, SEXP A_SEXP) {
+BEGIN_RCPP
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< NumericVector >::type X_(X_SEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type R_(R_SEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type A_(A_SEXP);
+    __result = Rcpp::wrap(dgamma_test(X_, R_, A_));
+    return __result;
+END_RCPP
+}
 // LDLT_test
 List LDLT_test(const NumericMatrix& A_);
 RcppExport SEXP CppADutils_LDLT_test(SEXP A_SEXP) {

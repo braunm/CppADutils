@@ -13,7 +13,7 @@ inline AScalar dt_log(const AScalar&, const AScalar&, const AScalar&);
 inline AScalar dhalft_log(const AScalar&, const AScalar&, const AScalar&);
 inline AScalar MB_erf_pos(const AScalar&);
 inline AScalar MB_erf(const AScalar&);
-
+inline AScalar dgamma_log(const AScalar&, const AScalar&, const AScalar&);
 
 
 AScalar dnorm_log(const AScalar& x,
@@ -93,5 +93,17 @@ AScalar MB_erf(const AScalar& x) {
 
   return(res);
 }
+
+AScalar dgamma_log(const AScalar& x,
+		   const AScalar& r,
+		   const AScalar& a) {
+  AScalar q1 = r*log(a) - lgamma(r);
+  AScalar q2 = (r-1)*log(x) - a*x;
+  AScalar res = q1 + q2;
+  return(res);
+}
+
+
+
 
 #endif
