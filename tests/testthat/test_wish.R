@@ -2,8 +2,6 @@ context("Wishart")
 
 test_that("Wishart", {
 
-
-    require(MCMCpack)
     log_mvg <- function(v,p) {
         res <- p*(p-1)*log(pi)/4
         for (j in 1:p) {
@@ -43,11 +41,6 @@ test_that("Wishart", {
 
     m1 <- Wish_test(X, v, S)
     m2 <- Inv_Wish_test(X, v, S)
-
-    ## w1 <- log(MCMCpack::dwish(X, v, S))
-    ## w2 <- log(MCMCpack::diwish(X, v, S))
-
-
 
     expect_equal(d1, m1)
     expect_equal(d2, m2)

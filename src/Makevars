@@ -1,3 +1,8 @@
-##PKG_CPPFLAGS=-I/opt/cppad/include  -I../inst/include/ -UNDEBUG
-PKG_CPPFLAGS=-I/opt/cppad/include  -I../inst/include/  -DNDEBUG -Wno-unused-variable
+## If CPPAD_DIR is defined, that's the CppAD directory.
+## If not, try /opt/cppad.  Otherwise, compilation will fail.
 
+ifdef CPPAD_DIR
+PKG_CPPFLAGS=-I$(CPPAD_DIR)/include  -I../inst/include/ -DNDEBUG -Wno-unused-variable
+else
+PKG_CPPFLAGS=-I/opt/cppad/include  -I../inst/include/ -DNDEBUG -Wno-unused-variable
+endif

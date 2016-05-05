@@ -18,7 +18,7 @@ using Rcpp::List;
 using Eigen::Map;
 using Eigen::VectorXd;
 using Eigen::MatrixXd;
-
+using CppAD::atomic_base;
 
 typedef CppAD::AD<double> AScalar;
 typedef Eigen::Matrix<AScalar, Eigen::Dynamic, Eigen::Dynamic> MatrixXA;

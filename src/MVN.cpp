@@ -2,7 +2,7 @@
 #define EIGEN_MATRIX_PLUGIN <eigen_plugin.h>
 #define EIGEN_SPARSEMATRIXBASE_PLUGIN <eigen_sparse_plugin.h>
 
-#define CPPAD_USE_CPLUSPLUS_2011 1
+// #define CPPAD_USE_CPLUSPLUS_2011 1
 
 #include <RcppEigen.h>
 #include <Eigen/Eigen>
@@ -31,6 +31,13 @@ typedef Eigen::Matrix<AScalar, Dynamic, Dynamic> MatrixXA;
 typedef Eigen::Matrix<AScalar, Dynamic, 1> VectorXA;
 typedef Eigen::SparseMatrix<AScalar> SparseMatrixXA;
 
+//' @title MVN test
+//' @param X_ matrix
+//' @param mu_ matrix
+//' @param G_ full covariance or precision matrix
+//' @param isPrec covariance or precision matrix?
+//' @return Numeric vector
+//' @export
 //[[Rcpp::export]]
 NumericVector MVN_test(NumericMatrix X_, NumericMatrix mu_,
 		       NumericMatrix G_, bool isPrec){
