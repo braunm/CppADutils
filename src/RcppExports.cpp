@@ -464,6 +464,17 @@ BEGIN_RCPP
     return __result;
 END_RCPP
 }
+// cppad_dgamma_log
+Rcpp::List cppad_dgamma_log(const NumericVector& X);
+RcppExport SEXP CppADutils_cppad_dgamma_log(SEXP XSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP);
+    __result = Rcpp::wrap(cppad_dgamma_log(X));
+    return __result;
+END_RCPP
+}
 // Wish_test
 double Wish_test(NumericMatrix X_, double nu_, NumericMatrix S_);
 RcppExport SEXP CppADutils_Wish_test(SEXP X_SEXP, SEXP nu_SEXP, SEXP S_SEXP) {
