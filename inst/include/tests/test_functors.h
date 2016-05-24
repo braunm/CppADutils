@@ -316,3 +316,15 @@ struct atan2_test_b {
     return res1*res2;
   }
 };
+
+struct dgamma_log_test {  
+  template<typename TA>  
+  AScalar eval(const MatrixBase<TA>& Y) {
+    size_t n = Y.size()/3;
+    AScalar res = 0.0;
+    for (size_t i=0; i<n; i++) {
+      res += dgamma_log(Y(3*i), Y(3*i+1), Y(3*i+2));
+    }
+    return res;
+  }
+};

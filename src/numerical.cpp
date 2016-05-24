@@ -3,6 +3,10 @@ using Rcpp::NumericVector;
 using Rcpp::NumericMatrix;
 
 
+
+
+
+
 //' @title Inverse logit function
 //' @description exp(x)/(1+exp(x))
 //' @param X input numeric vector
