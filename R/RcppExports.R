@@ -24,6 +24,21 @@ LKJ_const <- function(eta, K) {
     .Call('CppADutils_LKJ_const', PACKAGE = 'CppADutils', eta, K)
 }
 
+#' @title MVN test
+#' @param X_ matrix
+#' @param mu_ matrix
+#' @param G_ full covariance or precision matrix
+#' @param isPrec covariance or precision matrix?
+#' @return Numeric vector
+#' @export
+MVN_test <- function(X_, mu_, G_, isPrec) {
+    .Call('CppADutils_MVN_test', PACKAGE = 'CppADutils', X_, mu_, G_, isPrec)
+}
+
+Sparse_MVN_test <- function(X_, mu_, S_, isPrec) {
+    .Call('CppADutils_Sparse_MVN_test', PACKAGE = 'CppADutils', X_, mu_, S_, isPrec)
+}
+
 #' @title MatNorm_test
 #' @param X_ numeric matrix (k x N)
 #' @param M_ numeric matrix (k x N)
@@ -44,21 +59,6 @@ MatNorm_test <- function(X_, M_, chol_U_, chol_V_, isPrec) {
 #' @return log pdf of matrix normal distribution
 MatNorm_sparse_test <- function(X_, M_, U_, V_, isPrec) {
     .Call('CppADutils_MatNorm_sparse_test', PACKAGE = 'CppADutils', X_, M_, U_, V_, isPrec)
-}
-
-#' @title MVN test
-#' @param X_ matrix
-#' @param mu_ matrix
-#' @param G_ full covariance or precision matrix
-#' @param isPrec covariance or precision matrix?
-#' @return Numeric vector
-#' @export
-MVN_test <- function(X_, mu_, G_, isPrec) {
-    .Call('CppADutils_MVN_test', PACKAGE = 'CppADutils', X_, mu_, G_, isPrec)
-}
-
-Sparse_MVN_test <- function(X_, mu_, S_, isPrec) {
-    .Call('CppADutils_Sparse_MVN_test', PACKAGE = 'CppADutils', X_, mu_, S_, isPrec)
 }
 
 #' @title Inverse logit function
