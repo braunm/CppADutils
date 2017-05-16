@@ -7,7 +7,7 @@
 loginvlogit(X)
 }
 \arguments{
-  \item{X}{input numeric vector}
+\item{X}{input numeric vector}
 }
 \value{
 p = log(exp(x)/(1+exp(x)) = x-log(1+exp(x))
@@ -15,4 +15,3 @@ p = log(exp(x)/(1+exp(x)) = x-log(1+exp(x))
 \description{
 Log inverse logit, accurate even for very negative x
 }
-

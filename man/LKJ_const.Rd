@@ -7,9 +7,10 @@
 LKJ_const(eta, K)
 }
 \arguments{
-  \item{K}{dimension integer} \item{eta_}{parameter >0}
+\item{K}{dimension integer}
+
+\item{eta_}{parameter >0}
 }
 \value{
 log pdf
 }
-

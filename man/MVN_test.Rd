@@ -7,11 +7,14 @@
 MVN_test(X_, mu_, G_, isPrec)
 }
 \arguments{
-  \item{X_}{matrix} \item{mu_}{matrix} \item{G_}{full
-  covariance or precision matrix} \item{isPrec}{covariance or
-  precision matrix?}
+\item{X_}{matrix}
+
+\item{mu_}{matrix}
+
+\item{G_}{full covariance or precision matrix}
+
+\item{isPrec}{covariance or precision matrix?}
 }
 \value{
 Numeric vector
 }
-

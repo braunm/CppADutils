@@ -7,7 +7,7 @@
 lgammaexp(X)
 }
 \arguments{
-  \item{X}{input numeric vector}
+\item{X}{input numeric vector}
 }
 \value{
 log(gamma(exp(x)))
@@ -15,4 +15,3 @@ log(gamma(exp(x)))
 \description{
 log(gamma(exp(x))), accurate even for very small |x|
 }
-

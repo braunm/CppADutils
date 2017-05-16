@@ -7,7 +7,7 @@
 log1pmx(X)
 }
 \arguments{
-  \item{X}{input numeric vector}
+\item{X}{input numeric vector}
 }
 \value{
 log(1+x)-x
@@ -15,4 +15,3 @@ log(1+x)-x
 \description{
 log(1+x)-x, accurate even for small |x|
 }
-

@@ -7,7 +7,7 @@
 log1pexp(X)
 }
 \arguments{
-  \item{X}{input numeric vector}
+\item{X}{input numeric vector}
 }
 \value{
 log(1+exp(x))
@@ -15,4 +15,3 @@ log(1+exp(x))
 \description{
 log(1+exp(x)), accurate even for very large X.
 }
-

@@ -4,11 +4,11 @@ Version: 0.0.0.9000
 Authors@R: "Michael Braun <braunm@smu.edu> [aut, cre]"
 Description: What the package does (one paragraph)
 Depends:
-    R (>= 3.1.2),
-    Rcpp (>= 0.11.3),
-    RcppEigen (>= 0.3.2.3),
+    R (>= 3.4.0),
+    Rcpp (>= 0.12.10),
+    RcppEigen (>= 0.3.3.3),
     methods,
-    Matrix (>= 1.1.4)
+    Matrix (>= 1.2.9)
 License: file LICENSE
 LazyData: true
 LinkingTo: Rcpp, RcppEigen
@@ -21,4 +21,4 @@ Suggests:
     numDeriv
 VignetteBuilder: knitr
 SystemRequirements: C++11
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1

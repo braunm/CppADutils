@@ -7,7 +7,7 @@
 invlogit(X)
 }
 \arguments{
-  \item{X}{input numeric vector}
+\item{X}{input numeric vector}
 }
 \value{
 exp(x)/(1+exp(x))
@@ -15,4 +15,3 @@ exp(x)/(1+exp(x))
 \description{
 exp(x)/(1+exp(x))
 }
-

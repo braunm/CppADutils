@@ -2,7 +2,7 @@
 # ifndef CPPAD_EIGEN_SPARSE_PLUGIN_INCLUDED
 # define CPPAD_EIGEN_SPARSE_PLUGIN_INCLUDED
 
-typedef Scalar value_type;
+// typedef Scalar value_type;
 
 # endif
 
