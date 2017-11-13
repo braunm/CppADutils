@@ -7,10 +7,12 @@
 LKJ_test(Y_, eta_, K)
 }
 \arguments{
-  \item{Y_}{unconstrained vector} \item{eta_}{parameter >0}
-  \item{K}{dimension integer}
+\item{Y_}{unconstrained vector}
+
+\item{eta_}{parameter >0}
+
+\item{K}{dimension integer}
 }
 \value{
 List
 }
-

@@ -3,9 +3,9 @@
 \name{LKJ}
 \alias{LKJ}
 \alias{lkj_R}
-\alias{lkj_chol_logpdf_R}
 \alias{lkj_const_R}
 \alias{lkj_unwrap_R}
+\alias{lkj_chol_logpdf_R}
 \title{Functions for testing LKJ prior}
 \usage{
 lkj_R(Y, eta, K)
@@ -17,12 +17,16 @@ lkj_unwrap_R(Y, K)
 lkj_chol_logpdf_R(L, eta)
 }
 \arguments{
-  \item{Y}{vector of unconstrained parameters} \item{eta}
-  {LKJ parameter} \item{K}{dimension (integer)} \item{L}{lower
-  triangular Cholesky decomposition}
+\item{Y}{vector of unconstrained parameters}
+
+\item{eta}{LKJ parameter}
+
+\item{K}{dimension (integer)}
+
+\item{L}{lower triangular Cholesky decomposition}
 }
 \value{
-log LKJ pdf of unconstrained vector log LKJ pdf of Cholesky
-decomp, given unconstrained vector
-}
+log LKJ pdf of unconstrained vector
 
+log LKJ pdf of Cholesky decomp, given unconstrained vector
+}

@@ -2,9 +2,9 @@
 % Please edit documentation in R/CppADutils-class.R
 \docType{class}
 \name{adtest-class}
-\alias{Rcpp_adtest-class}
-\alias{ads}
 \alias{adtest-class}
+\alias{ads}
+\alias{Rcpp_adtest-class}
 \title{AD test for CppADutils}
 \format{An object of class \code{character} of length 1.}
 \usage{
@@ -14,4 +14,3 @@ ads
 class to run tests
 }
 \keyword{datasets}
-

@@ -7,7 +7,7 @@
 lgamma1p(X)
 }
 \arguments{
-  \item{X}{input numeric vector}
+\item{X}{input numeric vector}
 }
 \value{
 log(gamma(1+x))
@@ -15,4 +15,3 @@ log(gamma(1+x))
 \description{
 log(gamma(1+x)), accurate even for very small |x|
 }
-
