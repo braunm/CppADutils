@@ -8,11 +8,11 @@
 #' @return Numeric vector
 #' @export
 dgamma_test <- function(X_, R_, A_) {
-    .Call(`_CppADutils_dgamma_test`, X_, R_, A_)
+    .Call('_CppADutils_dgamma_test', PACKAGE = 'CppADutils', X_, R_, A_)
 }
 
 LDLT_test <- function(A_) {
-    .Call(`_CppADutils_LDLT_test`, A_)
+    .Call('_CppADutils_LDLT_test', PACKAGE = 'CppADutils', A_)
 }
 
 #' @title LKJ test
@@ -22,7 +22,7 @@ LDLT_test <- function(A_) {
 #' @return List
 #' @export
 LKJ_test <- function(Y_, eta_, K) {
-    .Call(`_CppADutils_LKJ_test`, Y_, eta_, K)
+    .Call('_CppADutils_LKJ_test', PACKAGE = 'CppADutils', Y_, eta_, K)
 }
 
 #' @title LKJ constant term in pdf
@@ -31,7 +31,7 @@ LKJ_test <- function(Y_, eta_, K) {
 #' @return log pdf
 #' @export
 LKJ_const <- function(eta, K) {
-    .Call(`_CppADutils_LKJ_const`, eta, K)
+    .Call('_CppADutils_LKJ_const', PACKAGE = 'CppADutils', eta, K)
 }
 
 #' @title MatNorm_test
@@ -42,7 +42,7 @@ LKJ_const <- function(eta, K) {
 #' @param isPrec TRUE if U and V are precision matrices.  FALSE is U and V are covariance matrices
 #' @return log pdf of matrix normal distribution
 MatNorm_test <- function(X_, M_, chol_U_, chol_V_, isPrec) {
-    .Call(`_CppADutils_MatNorm_test`, X_, M_, chol_U_, chol_V_, isPrec)
+    .Call('_CppADutils_MatNorm_test', PACKAGE = 'CppADutils', X_, M_, chol_U_, chol_V_, isPrec)
 }
 
 #' @rdname MatNorm_test
@@ -53,7 +53,7 @@ MatNorm_test <- function(X_, M_, chol_U_, chol_V_, isPrec) {
 #' @param isPrec TRUE if U and V are precision matrices.  FALSE is U and V are covariance matrices
 #' @return log pdf of matrix normal distribution
 MatNorm_sparse_test <- function(X_, M_, U_, V_, isPrec) {
-    .Call(`_CppADutils_MatNorm_sparse_test`, X_, M_, U_, V_, isPrec)
+    .Call('_CppADutils_MatNorm_sparse_test', PACKAGE = 'CppADutils', X_, M_, U_, V_, isPrec)
 }
 
 #' @title MVN test
@@ -64,11 +64,11 @@ MatNorm_sparse_test <- function(X_, M_, U_, V_, isPrec) {
 #' @return Numeric vector
 #' @export
 MVN_test <- function(X_, mu_, G_, isPrec) {
-    .Call(`_CppADutils_MVN_test`, X_, mu_, G_, isPrec)
+    .Call('_CppADutils_MVN_test', PACKAGE = 'CppADutils', X_, mu_, G_, isPrec)
 }
 
 Sparse_MVN_test <- function(X_, mu_, S_, isPrec) {
-    .Call(`_CppADutils_Sparse_MVN_test`, X_, mu_, S_, isPrec)
+    .Call('_CppADutils_Sparse_MVN_test', PACKAGE = 'CppADutils', X_, mu_, S_, isPrec)
 }
 
 #' @title Inverse logit function
@@ -77,7 +77,7 @@ Sparse_MVN_test <- function(X_, mu_, S_, isPrec) {
 #' @return exp(x)/(1+exp(x))
 #' @export
 invlogit <- function(X) {
-    .Call(`_CppADutils_invlogit`, X)
+    .Call('_CppADutils_invlogit', PACKAGE = 'CppADutils', X)
 }
 
 #' @title log(1+x)-x
@@ -86,7 +86,7 @@ invlogit <- function(X) {
 #' @return log(1+x)-x
 #' @export
 log1pmx <- function(X) {
-    .Call(`_CppADutils_log1pmx`, X)
+    .Call('_CppADutils_log1pmx', PACKAGE = 'CppADutils', X)
 }
 
 #' @title Log inverse logit function
@@ -95,7 +95,7 @@ log1pmx <- function(X) {
 #' @return p = log(exp(x)/(1+exp(x)) = x-log(1+exp(x))
 #' @export
 loginvlogit <- function(X) {
-    .Call(`_CppADutils_loginvlogit`, X)
+    .Call('_CppADutils_loginvlogit', PACKAGE = 'CppADutils', X)
 }
 
 #' @title log(1+exp(x))
@@ -104,7 +104,7 @@ loginvlogit <- function(X) {
 #' @return log(1+exp(x))
 #' @export
 log1pexp <- function(X) {
-    .Call(`_CppADutils_log1pexp`, X)
+    .Call('_CppADutils_log1pexp', PACKAGE = 'CppADutils', X)
 }
 
 #' @title log(gamma(1+x))
@@ -113,7 +113,7 @@ log1pexp <- function(X) {
 #' @return log(gamma(1+x))
 #' @export
 lgamma1p <- function(X) {
-    .Call(`_CppADutils_lgamma1p`, X)
+    .Call('_CppADutils_lgamma1p', PACKAGE = 'CppADutils', X)
 }
 
 #' @title log(gamma(exp(x)))
@@ -122,7 +122,7 @@ lgamma1p <- function(X) {
 #' @return log(gamma(exp(x)))
 #' @export
 lgammaexp <- function(X) {
-    .Call(`_CppADutils_lgammaexp`, X)
+    .Call('_CppADutils_lgammaexp', PACKAGE = 'CppADutils', X)
 }
 
 #' @name CppADutils-tests
@@ -130,170 +130,170 @@ lgammaexp <- function(X) {
 #' @description tests
 #' @param X numeric vector (not matrix at this time)
 CppADutils_tests <- function(X) {
-    invisible(.Call(`_CppADutils_CppADutils_tests`, X))
+    invisible(.Call('_CppADutils_CppADutils_tests', PACKAGE = 'CppADutils', X))
 }
 
 #' @inheritParams CppADutils-tests
 #' @rdname CppADutils-tests
 cppad_lbeta1 <- function(X) {
-    .Call(`_CppADutils_cppad_lbeta1`, X)
+    .Call('_CppADutils_cppad_lbeta1', PACKAGE = 'CppADutils', X)
 }
 
 #' @inheritParams CppADutils-tests
 #' @rdname CppADutils-tests
 cppad_dnorm_log <- function(X) {
-    .Call(`_CppADutils_cppad_dnorm_log`, X)
+    .Call('_CppADutils_cppad_dnorm_log', PACKAGE = 'CppADutils', X)
 }
 
 #' @inheritParams CppADutils-tests
 #' @rdname CppADutils-tests
 cppad_dbeta_log <- function(X) {
-    .Call(`_CppADutils_cppad_dbeta_log`, X)
+    .Call('_CppADutils_cppad_dbeta_log', PACKAGE = 'CppADutils', X)
 }
 
 #' @inheritParams CppADutils-tests
 #' @rdname CppADutils-tests
 cppad_dlogitbeta_log <- function(X) {
-    .Call(`_CppADutils_cppad_dlogitbeta_log`, X)
+    .Call('_CppADutils_cppad_dlogitbeta_log', PACKAGE = 'CppADutils', X)
 }
 
 #' @inheritParams CppADutils-tests
 #' @rdname CppADutils-tests
 cppad_lgamma1 <- function(X) {
-    .Call(`_CppADutils_cppad_lgamma1`, X)
+    .Call('_CppADutils_cppad_lgamma1', PACKAGE = 'CppADutils', X)
 }
 
 #' @inheritParams CppADutils-tests
 #' @rdname CppADutils-tests
 cppad_lgamma1p <- function(X) {
-    .Call(`_CppADutils_cppad_lgamma1p`, X)
+    .Call('_CppADutils_cppad_lgamma1p', PACKAGE = 'CppADutils', X)
 }
 
 #' @inheritParams CppADutils-tests
 #' @rdname CppADutils-tests
 cppad_lgammaexp <- function(X) {
-    .Call(`_CppADutils_cppad_lgammaexp`, X)
+    .Call('_CppADutils_cppad_lgammaexp', PACKAGE = 'CppADutils', X)
 }
 
 #' @inheritParams CppADutils-tests
 #' @rdname CppADutils-tests
 cppad_log1p <- function(X) {
-    .Call(`_CppADutils_cppad_log1p`, X)
+    .Call('_CppADutils_cppad_log1p', PACKAGE = 'CppADutils', X)
 }
 
 #' @inheritParams CppADutils-tests
 #' @rdname CppADutils-tests
 cppad_expm1 <- function(X) {
-    .Call(`_CppADutils_cppad_expm1`, X)
+    .Call('_CppADutils_cppad_expm1', PACKAGE = 'CppADutils', X)
 }
 
 #' @inheritParams CppADutils-tests
 #' @rdname CppADutils-tests
 cppad_log1pexp <- function(X) {
-    .Call(`_CppADutils_cppad_log1pexp`, X)
+    .Call('_CppADutils_cppad_log1pexp', PACKAGE = 'CppADutils', X)
 }
 
 #' @inheritParams CppADutils-tests
 #' @rdname CppADutils-tests
 cppad_log1pmx <- function(X) {
-    .Call(`_CppADutils_cppad_log1pmx`, X)
+    .Call('_CppADutils_cppad_log1pmx', PACKAGE = 'CppADutils', X)
 }
 
 #' @inheritParams CppADutils-tests
 #' @rdname CppADutils-tests
 cppad_loginvlogit <- function(X) {
-    .Call(`_CppADutils_cppad_loginvlogit`, X)
+    .Call('_CppADutils_cppad_loginvlogit', PACKAGE = 'CppADutils', X)
 }
 
 #' @inheritParams CppADutils-tests
 #' @rdname CppADutils-tests
 cppad_invlogit <- function(X) {
-    .Call(`_CppADutils_cppad_invlogit`, X)
+    .Call('_CppADutils_cppad_invlogit', PACKAGE = 'CppADutils', X)
 }
 
 #' @inheritParams CppADutils-tests
 #' @rdname CppADutils-tests
 cppad_incgamma <- function(X) {
-    .Call(`_CppADutils_cppad_incgamma`, X)
+    .Call('_CppADutils_cppad_incgamma', PACKAGE = 'CppADutils', X)
 }
 
 #' @inheritParams CppADutils-tests
 #' @rdname CppADutils-tests
 cppad_incbeta <- function(X) {
-    .Call(`_CppADutils_cppad_incbeta`, X)
+    .Call('_CppADutils_cppad_incbeta', PACKAGE = 'CppADutils', X)
 }
 
 #' @inheritParams CppADutils-tests
 #' @rdname CppADutils-tests
 cppad_incbeta2 <- function(X) {
-    .Call(`_CppADutils_cppad_incbeta2`, X)
+    .Call('_CppADutils_cppad_incbeta2', PACKAGE = 'CppADutils', X)
 }
 
 #' @inheritParams CppADutils-tests
 #' @rdname CppADutils-tests
 cppad_lgammaLogExp <- function(X) {
-    .Call(`_CppADutils_cppad_lgammaLogExp`, X)
+    .Call('_CppADutils_cppad_lgammaLogExp', PACKAGE = 'CppADutils', X)
 }
 
 #' @inheritParams CppADutils-tests
 #' @rdname CppADutils-tests
 cppad_dt_log <- function(X) {
-    .Call(`_CppADutils_cppad_dt_log`, X)
+    .Call('_CppADutils_cppad_dt_log', PACKAGE = 'CppADutils', X)
 }
 
 #' @inheritParams CppADutils-tests
 #' @rdname CppADutils-tests
 cppad_dhalft_log <- function(X) {
-    .Call(`_CppADutils_cppad_dhalft_log`, X)
+    .Call('_CppADutils_cppad_dhalft_log', PACKAGE = 'CppADutils', X)
 }
 
 #' @inheritParams CppADutils-tests
 #' @rdname CppADutils-tests
 cppad_dhalft_log2 <- function(X) {
-    .Call(`_CppADutils_cppad_dhalft_log2`, X)
+    .Call('_CppADutils_cppad_dhalft_log2', PACKAGE = 'CppADutils', X)
 }
 
 #' @inheritParams CppADutils-tests
 #' @rdname CppADutils-tests
 cppad_dnormTrunc0_log <- function(X) {
-    .Call(`_CppADutils_cppad_dnormTrunc0_log`, X)
+    .Call('_CppADutils_cppad_dnormTrunc0_log', PACKAGE = 'CppADutils', X)
 }
 
 #' @inheritParams CppADutils-tests
 #' @rdname CppADutils-tests
 cppad_atan2a <- function(X) {
-    .Call(`_CppADutils_cppad_atan2a`, X)
+    .Call('_CppADutils_cppad_atan2a', PACKAGE = 'CppADutils', X)
 }
 
 #' @inheritParams CppADutils-tests
 #' @rdname CppADutils-tests
 cppad_atan2b <- function(X) {
-    .Call(`_CppADutils_cppad_atan2b`, X)
+    .Call('_CppADutils_cppad_atan2b', PACKAGE = 'CppADutils', X)
 }
 
 #' @inheritParams CppADutils-tests
 #' @rdname CppADutils-tests
 cppad_pnorm_log <- function(X) {
-    .Call(`_CppADutils_cppad_pnorm_log`, X)
+    .Call('_CppADutils_cppad_pnorm_log', PACKAGE = 'CppADutils', X)
 }
 
 #' @inheritParams CppADutils-tests
 #' @rdname CppADutils-tests
 cppad_pnorm <- function(X) {
-    .Call(`_CppADutils_cppad_pnorm`, X)
+    .Call('_CppADutils_cppad_pnorm', PACKAGE = 'CppADutils', X)
 }
 
 #' @inheritParams CppADutils-tests
 #' @rdname CppADutils-tests
 cppad_dgamma_log <- function(X) {
-    .Call(`_CppADutils_cppad_dgamma_log`, X)
+    .Call('_CppADutils_cppad_dgamma_log', PACKAGE = 'CppADutils', X)
 }
 
 Wish_test <- function(X_, nu_, S_) {
-    .Call(`_CppADutils_Wish_test`, X_, nu_, S_)
+    .Call('_CppADutils_Wish_test', PACKAGE = 'CppADutils', X_, nu_, S_)
 }
 
 Inv_Wish_test <- function(X_, nu_, S_) {
-    .Call(`_CppADutils_Inv_Wish_test`, X_, nu_, S_)
+    .Call('_CppADutils_Inv_Wish_test', PACKAGE = 'CppADutils', X_, nu_, S_)
 }
 

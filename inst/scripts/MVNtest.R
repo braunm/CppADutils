@@ -7,7 +7,7 @@ library(CppADutils)
 set.seed(123)
 
 
-N <- 4
+N <- 400
 k1 <- 2
 k2 <- 3
 k <- k1*k2
