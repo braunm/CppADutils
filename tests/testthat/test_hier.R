@@ -5,7 +5,7 @@ test_that("hier1",{
     require(RcppEigen)
     require(numDeriv)
     require(mvtnorm)
-    
+
     set.seed(123)
     data(ADtest)
     k <- NCOL(ADtest$data[[1]]$X)
@@ -13,13 +13,13 @@ test_that("hier1",{
     sigma_b <- ADtest$priors$sigma.b
     B <- t(rmvnorm(length(ADtest$data), beta, sigma_b))
     V <- c(as.vector(B), beta)
-    
+
     get_LLi <- function(D, b, s) {
         m <- D$X %*% b
         res <- sum(dnorm(D$Y, m, s, log=TRUE))
         return(res)
     }
-    
+
     make_f <- function(D) {
         sigma_b <- D$priors$sigma.b
         m_beta <- D$priors$mean.beta
@@ -40,31 +40,33 @@ test_that("hier1",{
             return(res)
         }
     }
-    
+
     get_f <- make_f(ADtest)
-    
-    ## values from R function
+
+    print("values from R function")
     f1 <- get_f(V)
+  ##  print("  grad")
     g1 <- grad(get_f, V)
+ ##   print("  hessian")
     h1 <- hessian(get_f, V)
     s1 <- drop0(h1, 1e-8)
-    
+
     ## From C++ function using AD
     cl <- new("adtest", ADtest)
     cl$record.tape(V)
-    cl$init.hessian(V)    
+    cl$init.hessian(V)
     f2 <- cl$get.f(V)
     g2 <- cl$get.df(V)
     s2 <- cl$get.hessian.sparse(V)
     h2 <- drop0(cl$get.hessian(V))
-    
+
     expect_equal(f1, f2)
     expect_equal(g1, g2)
     expect_equal(s1, h2)
     expect_equal(s1, s2)
 })
-    
-    
-    
-    
-    
+
+
+
+
+

@@ -9,7 +9,7 @@ if (!require(devtools)) {
 set.seed(123)
 
 k <- 2
-T <- 50
+T <- 10
 N <- 5
 mean.X <- 0
 sd.X <- 1
@@ -38,7 +38,7 @@ ADtest <- list(data=data,
               sdY=sd.Y)
           )
 
-devtools::use_data(ADtest)
+usethis::use_data(ADtest, overwrite=TRUE)
 
 
 
