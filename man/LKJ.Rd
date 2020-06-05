@@ -30,3 +30,6 @@ log LKJ pdf of unconstrained vector
 
 log LKJ pdf of Cholesky decomp, given unconstrained vector
 }
+\description{
+Functions for testing LKJ prior
+}

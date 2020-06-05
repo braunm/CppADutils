@@ -16,3 +16,6 @@ dgamma_test(X_, R_, A_)
 \value{
 Numeric vector
 }
+\description{
+gamma_logpdf test
+}

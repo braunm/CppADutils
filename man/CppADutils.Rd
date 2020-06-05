@@ -3,8 +3,4 @@
 \docType{package}
 \name{CppADutils}
 \alias{CppADutils}
-\alias{CppADutils-package}
 \title{CppADutils.}
-\description{
-CppADutils.
-}

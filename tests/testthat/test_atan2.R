@@ -43,7 +43,7 @@ context("atan2b")
 
 test_that("atan2b",{
     require(numDeriv)
-    require(CppADutils)
+##    require(CppADutils)
     fn1 <- function(x,y) {
         res1 <- atan2(x,y)
         return(res1)

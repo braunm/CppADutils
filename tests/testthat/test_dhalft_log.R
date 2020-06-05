@@ -45,7 +45,7 @@ context("dhalft2_log")
 
 test_that("dhalft2_log",{
     require(numDeriv)
-    require(CppADutils)
+ ##   require(CppADutils)
     fn1 <- function(z, v, s) {
         res1 <- lgamma((v+1)/2) - lgamma(v/2)
         res1 <- res1 - 0.5*((v+1)*log(1+z^2/(v*s^2)) + log(pi * v)) - log(s)

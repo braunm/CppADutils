@@ -1,21 +1,29 @@
 context("expm1")
 
+## experimenting with complex step method for accuracy of finite diff estimate
+## that requires complex-valued functions, whcih expm1 is not
+
 test_that("expm1",{
-    require(numDeriv)
-    R_func <- function(x) {
+  require(numDeriv)
+  f_real <- function(x, i) expm1(x[2*(i-1)+1]) * expm1(x[2*i])
+  f_complex <- function(x, i) (exp(x[2*(i-1)+1]) - 1) * (exp(x[2*i]) - 1)
+
+  R_func <- function(x, complex=TRUE) {
+    val_func <- ifelse(complex, f_complex, f_real)
         n <- length(x)/2
         res <- 0
         for (i in 1:n) {
-            res <- res + expm1(x[2*(i-1)+1]) * expm1(x[2*i])
+          res <- res + val_func(x, i)
         }
         return(res)
     }
 
     x <- c(.4, 2.2, 4.4, 3.3, 5, 1.5)
 
-    R_val <- R_func(x)
-    R_grad <- grad(R_func, x)
-    R_hess <- hessian(R_func, x, method.args=list(r=8))
+    R_val <- R_func(x, TRUE)
+    ##    R_grad <- grad(R_func, x)
+    R_grad <- grad(R_func, x, method='complex')
+    R_hess <- hessian(R_func, x, method='complex', method.args=list(r=8))
     R_hess_spLT <- tril(drop0(R_hess, 1e-8))
 
     c_list <- cppad_expm1(x)

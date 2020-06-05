@@ -1,5 +1,8 @@
 context("dnormTrunc0_log")
 
+## To improve accuracy of the numerical estimate, try the complex
+## step method, using pracma::erfz to get complex pnorm
+
 test_that("dnormTrunc0_log",{
     require(numDeriv)
     fn <- function(z, m, s) {
@@ -37,4 +40,5 @@ test_that("dnormTrunc0_log",{
     expect_equal(c_hess_spLT, tril(drop0(c_hess_sp, 1e-8)))
     expect_equal(c_hess_spLT, R_hess_spLT, tolerance=1e-5)
 })
+
 

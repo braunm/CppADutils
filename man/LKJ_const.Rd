@@ -14,3 +14,6 @@ LKJ_const(eta, K)
 \value{
 log pdf
 }
+\description{
+LKJ constant term in pdf
+}
