@@ -13,7 +13,7 @@ License: file LICENSE
 LazyData: true
 LinkingTo: Rcpp, RcppEigen
 RcppModules: adtest
-Roxygen: list(wrap=TRUE)
+Encoding: UTF-8
 Suggests:
     knitr,
     plyr,

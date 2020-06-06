@@ -9,7 +9,7 @@ if (!require(devtools)) {
 set.seed(123)
 
 k <- 2
-T <- 10
+T <- 20
 N <- 5
 mean.X <- 0
 sd.X <- 1

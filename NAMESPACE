@@ -3,6 +3,7 @@
 export(CP_erf)
 export(LKJ_const)
 export(LKJ_test)
+export(MB_erf)
 export(MVN_test)
 export(adtest)
 export(dgamma_test)

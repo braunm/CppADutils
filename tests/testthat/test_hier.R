@@ -43,11 +43,8 @@ test_that("hier1",{
 
     get_f <- make_f(ADtest)
 
-    print("values from R function")
     f1 <- get_f(V)
-  ##  print("  grad")
     g1 <- grad(get_f, V)
- ##   print("  hessian")
     h1 <- hessian(get_f, V)
     s1 <- drop0(h1, 1e-8)
 
