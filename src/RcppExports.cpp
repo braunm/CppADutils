@@ -100,6 +100,28 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// CP_erf
+NumericVector CP_erf(NumericVector X_);
+RcppExport SEXP _CppADutils_CP_erf(SEXP X_SEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type X_(X_SEXP);
+    rcpp_result_gen = Rcpp::wrap(CP_erf(X_));
+    return rcpp_result_gen;
+END_RCPP
+}
+// MB_erf
+NumericVector MB_erf(NumericVector X_);
+RcppExport SEXP _CppADutils_MB_erf(SEXP X_SEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type X_(X_SEXP);
+    rcpp_result_gen = Rcpp::wrap(MB_erf(X_));
+    return rcpp_result_gen;
+END_RCPP
+}
 // dgamma_test
 NumericVector dgamma_test(NumericVector X_, NumericVector R_, NumericVector A_);
 RcppExport SEXP _CppADutils_dgamma_test(SEXP X_SEXP, SEXP R_SEXP, SEXP A_SEXP) {
@@ -176,6 +198,17 @@ BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP);
     rcpp_result_gen = Rcpp::wrap(lgammaexp(X));
+    return rcpp_result_gen;
+END_RCPP
+}
+// erf
+Rcpp::NumericVector erf(const NumericVector& X);
+RcppExport SEXP _CppADutils_erf(SEXP XSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP);
+    rcpp_result_gen = Rcpp::wrap(erf(X));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -512,6 +545,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"_CppADutils_Sparse_MVN_test", (DL_FUNC) &_CppADutils_Sparse_MVN_test, 4},
     {"_CppADutils_MatNorm_test", (DL_FUNC) &_CppADutils_MatNorm_test, 5},
     {"_CppADutils_MatNorm_sparse_test", (DL_FUNC) &_CppADutils_MatNorm_sparse_test, 5},
+    {"_CppADutils_CP_erf", (DL_FUNC) &_CppADutils_CP_erf, 1},
+    {"_CppADutils_MB_erf", (DL_FUNC) &_CppADutils_MB_erf, 1},
     {"_CppADutils_dgamma_test", (DL_FUNC) &_CppADutils_dgamma_test, 3},
     {"_CppADutils_invlogit", (DL_FUNC) &_CppADutils_invlogit, 1},
     {"_CppADutils_log1pmx", (DL_FUNC) &_CppADutils_log1pmx, 1},
@@ -519,6 +554,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_CppADutils_log1pexp", (DL_FUNC) &_CppADutils_log1pexp, 1},
     {"_CppADutils_lgamma1p", (DL_FUNC) &_CppADutils_lgamma1p, 1},
     {"_CppADutils_lgammaexp", (DL_FUNC) &_CppADutils_lgammaexp, 1},
+    {"_CppADutils_erf", (DL_FUNC) &_CppADutils_erf, 1},
     {"_CppADutils_CppADutils_tests", (DL_FUNC) &_CppADutils_CppADutils_tests, 1},
     {"_CppADutils_cppad_lbeta1", (DL_FUNC) &_CppADutils_cppad_lbeta1, 1},
     {"_CppADutils_cppad_dnorm_log", (DL_FUNC) &_CppADutils_cppad_dnorm_log, 1},

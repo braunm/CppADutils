@@ -122,4 +122,20 @@ Rcpp::NumericVector gamma(const NumericVector& X) {
   return(Y);
 }
 
+//' @title erf
+//' @description erf
+//' @param X numeric vector
+//' @return erf(x)
+//' @export
+//[[Rcpp::export]]
+Rcpp::NumericVector erf(const NumericVector& X) {
+
+  int k = X.size();
+  NumericVector Y(k);
+  for (int i=0; i<k; i++) {
+    Y(i) = erf(X(i));
+  }
+  return(Y);
+}
+
 

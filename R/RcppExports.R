@@ -61,6 +61,22 @@ MatNorm_sparse_test <- function(X_, M_, U_, V_, isPrec) {
     .Call('_CppADutils_MatNorm_sparse_test', PACKAGE = 'CppADutils', X_, M_, U_, V_, isPrec)
 }
 
+#' @title CP_erf test
+#' @param X_ vector
+#' @return Numeric vector
+#' @export
+CP_erf <- function(X_) {
+    .Call('_CppADutils_CP_erf', PACKAGE = 'CppADutils', X_)
+}
+
+#' @title MB_erf test
+#' @param X_ vector
+#' @return Numeric vector
+#' @export
+MB_erf <- function(X_) {
+    .Call('_CppADutils_MB_erf', PACKAGE = 'CppADutils', X_)
+}
+
 #' @title gamma_logpdf test
 #' @param X_ vector
 #' @param R_ vector
@@ -123,6 +139,15 @@ lgamma1p <- function(X) {
 #' @export
 lgammaexp <- function(X) {
     .Call('_CppADutils_lgammaexp', PACKAGE = 'CppADutils', X)
+}
+
+#' @title erf
+#' @description erf
+#' @param X numeric vector
+#' @return erf(x)
+#' @export
+erf <- function(X) {
+    .Call('_CppADutils_erf', PACKAGE = 'CppADutils', X)
 }
 
 #' @name CppADutils-tests

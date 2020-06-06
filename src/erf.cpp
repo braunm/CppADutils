@@ -2,13 +2,13 @@
 #define EIGEN_MATRIX_PLUGIN <eigen_plugin.h>
 #define EIGEN_SPARSEMATRIXBASE_PLUGIN <eigen_sparse_plugin.h>
 
-#define CPPAD_USE_CPLUSPLUS_2011 1
+ #define CPPAD_USE_CPLUSPLUS_2011 1
 
 #include <RcppEigen.h>
 #include <Eigen/Eigen>
 #include <cppad/cppad.hpp>
 #include <except.h>
-#include <gamma_AD.h>
+#include <distributions.h>
 
 
 using Rcpp::NumericVector;
@@ -29,31 +29,51 @@ typedef Eigen::Matrix<AScalar, Dynamic, Dynamic> MatrixXA;
 typedef Eigen::Matrix<AScalar, Dynamic, 1> VectorXA;
 
 
-//' @title gamma_logpdf test
+//' @title CP_erf test
 //' @param X_ vector
-//' @param R_ vector
-//' @param A_ vector
 //' @return Numeric vector
 //' @export
 //[[Rcpp::export]]
-NumericVector dgamma_test(NumericVector X_, NumericVector R_,
-		       NumericVector A_){
-	
-
+NumericVector CP_erf(NumericVector X_) {
+       
   size_t k = X_.size();
 
   VectorXA X = VectorXd::Map(X_.begin(), k).cast<AScalar>();
-  VectorXA R = VectorXd::Map(R_.begin(), k).cast<AScalar>();
-  VectorXA A = VectorXd::Map(A_.begin(), k).cast<AScalar>();
 
   VectorXA out(k);
 
-  gamma_logpdf(X, R, A, out);
+  // MB_erf(X, out);
 
   NumericVector res(k);
   for (size_t i=0; i<k; i++)
-    res(i) = Value(out(i));
-  
+    //    res(i) = Value(out(i));
+    res(i)=Value(CppAD::erf(X(i)));
+  return(res);
+}
+
+
+// TO DO:  Not convinced the CppAD erf is accurate
+//  Might need to create a complete MB_erf atomic
+
+//' @title MB_erf test
+//' @param X_ vector
+//' @return Numeric vector
+//' @export
+//[[Rcpp::export]]
+NumericVector MB_erf(NumericVector X_) {
+       
+  size_t k = X_.size();
+
+  VectorXA X = VectorXd::Map(X_.begin(), k).cast<AScalar>();
+
+  VectorXA out(k);
+
+  // MB_erf(X, out);
+
+  NumericVector res(k);
+  for (size_t i=0; i<k; i++)
+    //    res(i) = Value(out(i));
+    res(i)=Value(MB_erf(X(i)));
   return(res);
 }
 
