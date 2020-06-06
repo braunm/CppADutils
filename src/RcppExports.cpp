@@ -6,19 +6,6 @@
 
 using namespace Rcpp;
 
-// dgamma_test
-NumericVector dgamma_test(NumericVector X_, NumericVector R_, NumericVector A_);
-RcppExport SEXP _CppADutils_dgamma_test(SEXP X_SEXP, SEXP R_SEXP, SEXP A_SEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< NumericVector >::type X_(X_SEXP);
-    Rcpp::traits::input_parameter< NumericVector >::type R_(R_SEXP);
-    Rcpp::traits::input_parameter< NumericVector >::type A_(A_SEXP);
-    rcpp_result_gen = Rcpp::wrap(dgamma_test(X_, R_, A_));
-    return rcpp_result_gen;
-END_RCPP
-}
 // LDLT_test
 List LDLT_test(const NumericMatrix& A_);
 RcppExport SEXP _CppADutils_LDLT_test(SEXP A_SEXP) {
@@ -55,6 +42,34 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// MVN_test
+NumericVector MVN_test(NumericMatrix X_, NumericMatrix mu_, NumericMatrix G_, bool isPrec);
+RcppExport SEXP _CppADutils_MVN_test(SEXP X_SEXP, SEXP mu_SEXP, SEXP G_SEXP, SEXP isPrecSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericMatrix >::type X_(X_SEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type mu_(mu_SEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type G_(G_SEXP);
+    Rcpp::traits::input_parameter< bool >::type isPrec(isPrecSEXP);
+    rcpp_result_gen = Rcpp::wrap(MVN_test(X_, mu_, G_, isPrec));
+    return rcpp_result_gen;
+END_RCPP
+}
+// Sparse_MVN_test
+NumericVector Sparse_MVN_test(NumericMatrix X_, NumericMatrix mu_, Rcpp::S4 S_, bool isPrec);
+RcppExport SEXP _CppADutils_Sparse_MVN_test(SEXP X_SEXP, SEXP mu_SEXP, SEXP S_SEXP, SEXP isPrecSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericMatrix >::type X_(X_SEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type mu_(mu_SEXP);
+    Rcpp::traits::input_parameter< Rcpp::S4 >::type S_(S_SEXP);
+    Rcpp::traits::input_parameter< bool >::type isPrec(isPrecSEXP);
+    rcpp_result_gen = Rcpp::wrap(Sparse_MVN_test(X_, mu_, S_, isPrec));
+    return rcpp_result_gen;
+END_RCPP
+}
 // MatNorm_test
 double MatNorm_test(NumericMatrix X_, NumericMatrix M_, NumericMatrix chol_U_, NumericMatrix chol_V_, bool isPrec);
 RcppExport SEXP _CppADutils_MatNorm_test(SEXP X_SEXP, SEXP M_SEXP, SEXP chol_U_SEXP, SEXP chol_V_SEXP, SEXP isPrecSEXP) {
@@ -85,31 +100,16 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// MVN_test
-NumericVector MVN_test(NumericMatrix X_, NumericMatrix mu_, NumericMatrix G_, bool isPrec);
-RcppExport SEXP _CppADutils_MVN_test(SEXP X_SEXP, SEXP mu_SEXP, SEXP G_SEXP, SEXP isPrecSEXP) {
+// dgamma_test
+NumericVector dgamma_test(NumericVector X_, NumericVector R_, NumericVector A_);
+RcppExport SEXP _CppADutils_dgamma_test(SEXP X_SEXP, SEXP R_SEXP, SEXP A_SEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< NumericMatrix >::type X_(X_SEXP);
-    Rcpp::traits::input_parameter< NumericMatrix >::type mu_(mu_SEXP);
-    Rcpp::traits::input_parameter< NumericMatrix >::type G_(G_SEXP);
-    Rcpp::traits::input_parameter< bool >::type isPrec(isPrecSEXP);
-    rcpp_result_gen = Rcpp::wrap(MVN_test(X_, mu_, G_, isPrec));
-    return rcpp_result_gen;
-END_RCPP
-}
-// Sparse_MVN_test
-NumericVector Sparse_MVN_test(NumericMatrix X_, NumericMatrix mu_, Rcpp::S4 S_, bool isPrec);
-RcppExport SEXP _CppADutils_Sparse_MVN_test(SEXP X_SEXP, SEXP mu_SEXP, SEXP S_SEXP, SEXP isPrecSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< NumericMatrix >::type X_(X_SEXP);
-    Rcpp::traits::input_parameter< NumericMatrix >::type mu_(mu_SEXP);
-    Rcpp::traits::input_parameter< Rcpp::S4 >::type S_(S_SEXP);
-    Rcpp::traits::input_parameter< bool >::type isPrec(isPrecSEXP);
-    rcpp_result_gen = Rcpp::wrap(Sparse_MVN_test(X_, mu_, S_, isPrec));
+    Rcpp::traits::input_parameter< NumericVector >::type X_(X_SEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type R_(R_SEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type A_(A_SEXP);
+    rcpp_result_gen = Rcpp::wrap(dgamma_test(X_, R_, A_));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -505,14 +505,14 @@ END_RCPP
 RcppExport SEXP _rcpp_module_boot_adtest();
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_CppADutils_dgamma_test", (DL_FUNC) &_CppADutils_dgamma_test, 3},
     {"_CppADutils_LDLT_test", (DL_FUNC) &_CppADutils_LDLT_test, 1},
     {"_CppADutils_LKJ_test", (DL_FUNC) &_CppADutils_LKJ_test, 3},
     {"_CppADutils_LKJ_const", (DL_FUNC) &_CppADutils_LKJ_const, 2},
-    {"_CppADutils_MatNorm_test", (DL_FUNC) &_CppADutils_MatNorm_test, 5},
-    {"_CppADutils_MatNorm_sparse_test", (DL_FUNC) &_CppADutils_MatNorm_sparse_test, 5},
     {"_CppADutils_MVN_test", (DL_FUNC) &_CppADutils_MVN_test, 4},
     {"_CppADutils_Sparse_MVN_test", (DL_FUNC) &_CppADutils_Sparse_MVN_test, 4},
+    {"_CppADutils_MatNorm_test", (DL_FUNC) &_CppADutils_MatNorm_test, 5},
+    {"_CppADutils_MatNorm_sparse_test", (DL_FUNC) &_CppADutils_MatNorm_sparse_test, 5},
+    {"_CppADutils_dgamma_test", (DL_FUNC) &_CppADutils_dgamma_test, 3},
     {"_CppADutils_invlogit", (DL_FUNC) &_CppADutils_invlogit, 1},
     {"_CppADutils_log1pmx", (DL_FUNC) &_CppADutils_log1pmx, 1},
     {"_CppADutils_loginvlogit", (DL_FUNC) &_CppADutils_loginvlogit, 1},
