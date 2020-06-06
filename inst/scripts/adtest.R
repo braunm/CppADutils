@@ -43,7 +43,7 @@ get_f <- make_f(ADtest)
 
 ## values from R function
 f1 <- get_f(V)
-g1 <- grad(get_f, V)
+g1 <- grad(get_f, V)=
 h1 <- hessian(get_f, V)
 s1 <- drop0(h1, 1e-9)
 
