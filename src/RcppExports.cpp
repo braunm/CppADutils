@@ -135,83 +135,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// invlogit
-Rcpp::NumericVector invlogit(const NumericVector& X);
-RcppExport SEXP _CppADutils_invlogit(SEXP XSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP);
-    rcpp_result_gen = Rcpp::wrap(invlogit(X));
-    return rcpp_result_gen;
-END_RCPP
-}
-// log1pmx
-Rcpp::NumericVector log1pmx(const NumericVector& X);
-RcppExport SEXP _CppADutils_log1pmx(SEXP XSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP);
-    rcpp_result_gen = Rcpp::wrap(log1pmx(X));
-    return rcpp_result_gen;
-END_RCPP
-}
-// loginvlogit
-Rcpp::NumericVector loginvlogit(const NumericVector& X);
-RcppExport SEXP _CppADutils_loginvlogit(SEXP XSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP);
-    rcpp_result_gen = Rcpp::wrap(loginvlogit(X));
-    return rcpp_result_gen;
-END_RCPP
-}
-// log1pexp
-Rcpp::NumericVector log1pexp(const NumericVector& X);
-RcppExport SEXP _CppADutils_log1pexp(SEXP XSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP);
-    rcpp_result_gen = Rcpp::wrap(log1pexp(X));
-    return rcpp_result_gen;
-END_RCPP
-}
-// lgamma1p
-Rcpp::NumericVector lgamma1p(const NumericVector& X);
-RcppExport SEXP _CppADutils_lgamma1p(SEXP XSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP);
-    rcpp_result_gen = Rcpp::wrap(lgamma1p(X));
-    return rcpp_result_gen;
-END_RCPP
-}
-// lgammaexp
-Rcpp::NumericVector lgammaexp(const NumericVector& X);
-RcppExport SEXP _CppADutils_lgammaexp(SEXP XSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP);
-    rcpp_result_gen = Rcpp::wrap(lgammaexp(X));
-    return rcpp_result_gen;
-END_RCPP
-}
-// erf
-Rcpp::NumericVector erf(const NumericVector& X);
-RcppExport SEXP _CppADutils_erf(SEXP XSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const NumericVector& >::type X(XSEXP);
-    rcpp_result_gen = Rcpp::wrap(erf(X));
-    return rcpp_result_gen;
-END_RCPP
-}
 // CppADutils_tests
 void CppADutils_tests(const NumericVector& X);
 RcppExport SEXP _CppADutils_CppADutils_tests(SEXP XSEXP) {
@@ -548,13 +471,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"_CppADutils_CP_erf", (DL_FUNC) &_CppADutils_CP_erf, 1},
     {"_CppADutils_MB_erf", (DL_FUNC) &_CppADutils_MB_erf, 1},
     {"_CppADutils_dgamma_test", (DL_FUNC) &_CppADutils_dgamma_test, 3},
-    {"_CppADutils_invlogit", (DL_FUNC) &_CppADutils_invlogit, 1},
-    {"_CppADutils_log1pmx", (DL_FUNC) &_CppADutils_log1pmx, 1},
-    {"_CppADutils_loginvlogit", (DL_FUNC) &_CppADutils_loginvlogit, 1},
-    {"_CppADutils_log1pexp", (DL_FUNC) &_CppADutils_log1pexp, 1},
-    {"_CppADutils_lgamma1p", (DL_FUNC) &_CppADutils_lgamma1p, 1},
-    {"_CppADutils_lgammaexp", (DL_FUNC) &_CppADutils_lgammaexp, 1},
-    {"_CppADutils_erf", (DL_FUNC) &_CppADutils_erf, 1},
     {"_CppADutils_CppADutils_tests", (DL_FUNC) &_CppADutils_CppADutils_tests, 1},
     {"_CppADutils_cppad_lbeta1", (DL_FUNC) &_CppADutils_cppad_lbeta1, 1},
     {"_CppADutils_cppad_dnorm_log", (DL_FUNC) &_CppADutils_cppad_dnorm_log, 1},
