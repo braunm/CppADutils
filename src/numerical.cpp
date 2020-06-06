@@ -1,11 +1,9 @@
+// Consider moving these to mbutils
+
+
 #include <Rcpp.h>
 using Rcpp::NumericVector;
 using Rcpp::NumericMatrix;
-
-
-
-
-
 
 //' @title Inverse logit function
 //' @description exp(x)/(1+exp(x))
@@ -102,7 +100,7 @@ Rcpp::NumericVector lgammaexp(const NumericVector& X) {
   return(Y);
 }
 
-
+// Not exported: present in base R
 Rcpp::NumericVector lgamma(const NumericVector& X) {
   int k = X.size();
   NumericVector Y(k);
@@ -112,6 +110,7 @@ Rcpp::NumericVector lgamma(const NumericVector& X) {
   return(Y);
 }
 
+// Not exported: present in base R
 Rcpp::NumericVector gamma(const NumericVector& X) {
 
   int k = X.size();

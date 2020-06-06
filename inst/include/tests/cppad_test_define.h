@@ -77,26 +77,16 @@ class run_test {
 
     VectorXd w(1);
     w(0) = 1.0;
-
-    
- 
-      
+\      
     VectorXd val(1);
     val = tape.Forward(0, X);
     VectorXd grad = tape.Jacobian(X);
     MatrixXd hess_dense = MatrixXd::Map(tape.Hessian(X, size_t(0)).data(), nvars, nvars);
     
-    /* Rcout << "grad:\n" << grad << "\n\n"; */
-    /* Rcout << "hess_dense:\n" << hess_dense << "\n\n"; */
-
     tape.Jacobian(X);
     auto hsp = tape.SparseHessian(X, w);
     MatrixXd hess_sparse = MatrixXd::Map(hsp.data(), nvars, nvars);
-   
-
-    
-    //    Rcout << "hess_sparse from driver:\n" << hess_sparse << "\n\n";
-    
+  
     // make identity matrices
     
     sp_set identSet(nvars); 
