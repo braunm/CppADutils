@@ -18,7 +18,8 @@ Suggests:
     knitr,
     plyr,
     testthat,
-    numDeriv
+    numDeriv,
+    pracma
 VignetteBuilder: knitr
 SystemRequirements: C++11
 RoxygenNote: 7.2.1
