@@ -18,7 +18,7 @@ test_that("dgamma_log",{
     R_val <- R_func(x)
     R_grad <- grad(R_func, x, method.args=list(r=8))
     R_hess <- hessian(R_func, x, method.args=list(r=8))
-    R_hess_spLT <- tril(drop0(R_hess, 1e-8))
+    R_hess_spLT <- tril(drop0(R_hess, 1e-7))
 
     c_list <- cppad_dgamma_log(x)
     c_val <- c_list$val
@@ -35,5 +35,3 @@ test_that("dgamma_log",{
     expect_equal(c_hess_spLT, R_hess_spLT, tolerance=1e-6)
 
 })
-
-

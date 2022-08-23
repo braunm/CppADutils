@@ -1,14 +1,14 @@
 Package: CppADutils
 Title: utils for using CppAD in packages
-Version: 0.0.0.9000
+Version: 0.0.1
 Authors@R: "Michael Braun <braunm@smu.edu> [aut, cre]"
 Description: What the package does (one paragraph)
 Depends:
-    R (>= 3.4.0),
-    Rcpp (>= 0.12.10),
+    R (>= 4.1.0),
+    Rcpp (>= 1.0),
     RcppEigen (>= 0.3.3.3),
     methods,
-    Matrix (>= 1.2.9)
+    Matrix (>= 1.4)
 License: file LICENSE
 LazyData: true
 LinkingTo: Rcpp, RcppEigen
@@ -21,4 +21,4 @@ Suggests:
     numDeriv
 VignetteBuilder: knitr
 SystemRequirements: C++11
-RoxygenNote: 7.1.0
+RoxygenNote: 7.2.1

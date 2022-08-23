@@ -38,11 +38,4 @@ ADtest <- list(data=data,
               sdY=sd.Y)
           )
 
-usethis::use_data(ADtest, overwrite=TRUE)
-
-
-
-
-
-
-
+usethis::use_data(ADtest, overwrite = TRUE)

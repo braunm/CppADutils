@@ -43,10 +43,12 @@ test_that("hier1",{
 
     get_f <- make_f(ADtest)
 
+    ## values from R function
     f1 <- get_f(V)
     g1 <- grad(get_f, V)
     h1 <- hessian(get_f, V)
-    s1 <- drop0(h1, 1e-8)
+    s1 <- as(drop0(h1, 1e-8), "generalMatrix")
+
 
     ## From C++ function using AD
     cl <- new("adtest", ADtest)
@@ -55,15 +57,10 @@ test_that("hier1",{
     f2 <- cl$get.f(V)
     g2 <- cl$get.df(V)
     s2 <- cl$get.hessian.sparse(V)
-    h2 <- drop0(cl$get.hessian(V))
+    h2 <- as(drop0(cl$get.hessian(V)), "generalMatrix")
 
     expect_equal(f1, f2)
     expect_equal(g1, g2)
     expect_equal(s1, h2)
     expect_equal(s1, s2)
 })
-
-
-
-
-

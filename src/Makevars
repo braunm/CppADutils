@@ -6,3 +6,4 @@ PKG_CPPFLAGS= -I$(CPPAD_DIR)/include  -I../inst/include/ -DNDEBUG -DCPPAD_USE_CP
 else
 PKG_CPPFLAGS=-I/opt/cppad/include  -I../inst/include/ -DNDEBUG -Wno-unused-variable
 endif
+PKG_CFLAGS=-O3 -Wno-unknown-pragmas
