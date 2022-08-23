@@ -4,5 +4,4 @@
 inst/doc
 *.so
 *.o
-src/RcppExports.cpp
 man/*
