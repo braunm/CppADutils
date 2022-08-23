@@ -6,7 +6,9 @@
 \alias{ads}
 \alias{Rcpp_adtest-class}
 \title{AD test for CppADutils}
-\format{An object of class \code{character} of length 1.}
+\format{
+An object of class \code{character} of length 1.
+}
 \usage{
 ads
 }

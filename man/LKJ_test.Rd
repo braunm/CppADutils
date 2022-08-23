@@ -16,3 +16,6 @@ LKJ_test(Y_, eta_, K)
 \value{
 List
 }
+\description{
+LKJ test
+}

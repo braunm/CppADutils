@@ -17,3 +17,6 @@ subvech(M)
 \value{
 vector or matrix
 }
+\description{
+vech
+}

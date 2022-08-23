@@ -18,3 +18,6 @@ MVN_test(X_, mu_, G_, isPrec)
 \value{
 Numeric vector
 }
+\description{
+MVN test
+}

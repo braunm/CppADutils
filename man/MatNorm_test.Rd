@@ -23,15 +23,12 @@ MatNorm_sparse_test(X_, M_, U_, V_, isPrec)
 \item{U_}{k x k dgCMatrix (full, not Cholesky)}
 
 \item{V_}{N x N dgCMatrix (full, not Cholesky)}
-
-\item{X_}{numeric matrix (k x N)}
-
-\item{M_}{numeric matrix (k x N)}
-
-\item{isPrec}{TRUE if U and V are precision matrices.  FALSE is U and V are covariance matrices}
 }
 \value{
 log pdf of matrix normal distribution
 
 log pdf of matrix normal distribution
+}
+\description{
+MatNorm_test
 }
