@@ -3,7 +3,9 @@
 
 ifdef CPPAD_DIR
 PKG_CPPFLAGS= -I$(CPPAD_DIR)/include  -I../inst/include/ -DNDEBUG -DCPPAD_USE_CPLUSPLUS_2011 -Wno-unused-variable
+PKG_LIBS= -L$(CPPAD_DIR)/lib -lcppad_lib
 else
 PKG_CPPFLAGS=-I/opt/homebrew/opt/cppad/include  -I../inst/include/ -DNDEBUG -Wno-unused-variable
+PKG_LIBS= -L/opt/homebrew/opt/cppad/lib -lcppad_lib
 endif
 PKG_CFLAGS=-O3 -Wno-unknown-pragmas
